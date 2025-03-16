@@ -1,0 +1,160 @@
+<div class="progress-page w-full">
+    <!-- Header with back button -->
+    <div class="header bg-white shadow-md p-4 mb-6 rounded-lg w-full">
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-800">Data Completion Analysis</h1>
+            <a routerLink=".."
+                class="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors cursor-pointer">
+                <i class="material-icons">arrow_back</i>
+                <span>Back</span>
+            </a>
+        </div>
+        <p class="text-gray-600 mt-2">Detailed visualization of missing fields</p>
+    </div>
+
+    <div class="content-container w-full">
+        <!-- Global summary with circular charts -->
+        <div class="summary-section bg-white shadow-md p-6 mb-6 rounded-lg w-full">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Global Summary</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+                <!-- Personal information -->
+                <div class="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500 w-full">
+                    <div class="flex flex-col items-center mb-4">
+                        <h3 class="font-medium text-blue-700 mb-2">Personal Information</h3>
+                        <!-- Circular chart -->
+                        <div class="circle-progress-container relative w-32 h-32">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg" d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" [attr.stroke-dasharray]="getPersonalInfoCompletion() + ', 100'" d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831" stroke="#3b82f6" />
+                                <text x="18" y="20.35" class="percentage">{{ getPersonalInfoCompletion() }}%</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 text-center mb-3">
+                        <span class="font-semibold">{{ getMissingPersonalFields() }}</span> missing fields out of {{
+                        personalInfoFields.length }}
+                    </p>
+
+                    <!-- List of missing fields with "Show more" button -->
+                    <div *ngIf="getMissingPersonalFields() > 0">
+                        <button (click)="togglePersonalFields()"
+                            class="w-full py-2 px-3 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-md flex items-center justify-center transition-colors mb-2">
+                            <span>{{ showPersonalFields ? 'Hide details' : 'Show missing fields' }}</span>
+                            <i class="material-icons ml-1">{{ showPersonalFields ? 'expand_less' : 'expand_more' }}</i>
+                        </button>
+
+                        <div *ngIf="showPersonalFields"
+                            class="missing-fields-list mt-2 bg-white rounded-md p-2 shadow-sm">
+                            <div *ngFor="let field of getMissingPersonalFieldsList()"
+                                class="py-1 border-b border-gray-100 last:border-0">
+                                <div class="flex items-center">
+                                    <i class="material-icons text-red-500 text-sm mr-2">error</i>
+                                    <span class="text-sm">{{ field.name }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Student information -->
+                <div class="bg-emerald-50 rounded-lg p-4 border-l-4 border-emerald-500 w-full">
+                    <div class="flex flex-col items-center mb-4">
+                        <h3 class="font-medium text-emerald-700 mb-2">Student Information</h3>
+                        <!-- Circular chart -->
+                        <div class="circle-progress-container relative w-32 h-32">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg" d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" [attr.stroke-dasharray]="getStudentInfoCompletion() + ', 100'" d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831" stroke="#10b981" />
+                                <text x="18" y="20.35" class="percentage">{{ getStudentInfoCompletion() }}%</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 text-center mb-3">
+                        <span class="font-semibold">{{ getMissingStudentFields() }}</span> missing fields out of {{
+                        studentInfoFields.length }}
+                    </p>
+
+                    <!-- List of missing fields with "Show more" button -->
+                    <div *ngIf="getMissingStudentFields() > 0">
+                        <button (click)="toggleStudentFields()"
+                            class="w-full py-2 px-3 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 rounded-md flex items-center justify-center transition-colors mb-2">
+                            <span>{{ showStudentFields ? 'Hide details' : 'Show missing fields' }}</span>
+                            <i class="material-icons ml-1">{{ showStudentFields ? 'expand_less' : 'expand_more' }}</i>
+                        </button>
+
+                        <div *ngIf="showStudentFields"
+                            class="missing-fields-list mt-2 bg-white rounded-md p-2 shadow-sm">
+                            <div *ngFor="let field of getMissingStudentFieldsList()"
+                                class="py-1 border-b border-gray-100 last:border-0">
+                                <div class="flex items-center">
+                                    <i class="material-icons text-red-500 text-sm mr-2">error</i>
+                                    <span class="text-sm">{{ field.name }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Candidacy information -->
+                <div class="bg-amber-50 rounded-lg p-4 border-l-4 border-amber-500 w-full">
+                    <div class="flex flex-col items-center mb-4">
+                        <h3 class="font-medium text-amber-700 mb-2">Academic Information</h3>
+                        <!-- Circular chart -->
+                        <div class="circle-progress-container relative w-32 h-32">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg" d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path class="circle" [attr.stroke-dasharray]="getCandidacyInfoCompletion() + ', 100'" d="M18 2.0845
+                                    a 15.9155 15.9155 0 0 1 0 31.831
+                                    a 15.9155 15.9155 0 0 1 0 -31.831" stroke="#f59e0b" />
+                                <text x="18" y="20.35" class="percentage">{{ getCandidacyInfoCompletion() }}%</text>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 text-center mb-3">
+                        <span class="font-semibold">{{ getMissingCandidacyFields() }}</span> missing fields out of {{
+                        candidacyInfoFields.length }}
+                    </p>
+
+                    <!-- List of missing fields with "Show more" button -->
+                    <div *ngIf="getMissingCandidacyFields() > 0">
+                        <button (click)="toggleCandidacyFields()"
+                            class="w-full py-2 px-3 bg-amber-100 hover:bg-amber-200 text-amber-700 rounded-md flex items-center justify-center transition-colors mb-2">
+                            <span>{{ showCandidacyFields ? 'Hide details' : 'Show missing fields' }}</span>
+                            <i class="material-icons ml-1">{{ showCandidacyFields ? 'expand_less' : 'expand_more' }}</i>
+                        </button>
+
+                        <div *ngIf="showCandidacyFields"
+                            class="missing-fields-list mt-2 bg-white rounded-md p-2 shadow-sm max-h-60 overflow-y-auto">
+                            <div *ngFor="let field of getMissingCandidacyFieldsList()"
+                                class="py-1 border-b border-gray-100 last:border-0">
+                                <div class="flex items-center">
+                                    <i class="material-icons text-red-500 text-sm mr-2">error</i>
+                                    <span class="text-sm">{{ field.name }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message if all fields are filled -->
+        <div class="bg-white shadow-md p-6 rounded-lg text-center mb-6 w-full"
+            *ngIf="getMissingPersonalFields() === 0 && getMissingStudentFields() === 0 && getMissingCandidacyFields() === 0">
+            <i class="material-icons text-green-500 text-5xl mb-4">check_circle</i>
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">Congratulations!</h2>
+            <p class="text-gray-600">All fields are filled. The data is complete.</p>
+        </div>
+    </div>
+</div>

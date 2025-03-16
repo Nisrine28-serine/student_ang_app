@@ -1,369 +1,476 @@
-<div class="card-wrapper bg-gradient-to-br from-amber-50 to-white rounded-lg shadow-lg p-6 border-t-4 border-amber-500 hover:shadow-xl transition-all duration-300"
-    *ngIf="candidacyData">
-    <!-- Entête avec nombre de candidatures et pagination -->
+<div
+    class="card-wrapper bg-gradient-to-br from-amber-50 to-white rounded-lg shadow-lg p-6 border-t-4 border-amber-500 hover:shadow-xl transition-all duration-300">
     <div class="flex items-center justify-between mb-4">
-        <div>
-            <h2 class="text-xl font-semibold text-gray-800">Academic Information</h2>
-            <p class="text-sm text-gray-500" *ngIf="totalCandidacies > 0">
-                Candidature {{ currentPage + 1 }} sur {{ totalCandidacies }}
-            </p>
-        </div>
-        <i class="material-icons text-amber-500">how_to_reg</i>
+        <h2 class="text-xl font-semibold text-gray-800">Academic Information</h2>
+        <i class="material-icons text-amber-500">school</i>
     </div>
 
-    <!-- Contenu de la carte -->
-    <div class="space-y-3">
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">badge</i>
-            <div>
-                <p class="text-sm text-gray-500">Student ID</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.idNum) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">date_range</i>
-            <div>
-                <p class="text-sm text-gray-500">Academic Year</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.yearCode) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">category</i>
-            <div>
-                <p class="text-sm text-gray-500">Division</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.divisionCode) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">assignment_turned_in</i>
-            <div>
-                <p class="text-sm text-gray-500">Status</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.stage) }}</p>
-            </div>
-        </div>
+    <!-- Pagination indicator -->
+    <p class="text-sm text-gray-500 mb-3" *ngIf="totalCandidacies > 0">
+        Candidacy {{ currentPage + 1 }} of {{ totalCandidacies }}
+    </p>
+
+    <!-- Important information always visible -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" *ngIf="candidacyData">
         <div class="flex items-center gap-2">
             <i class="material-icons text-amber-500 text-xl">school</i>
             <div>
                 <p class="text-sm text-gray-500">Program</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.programCode) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">today</i>
-            <div>
-                <p class="text-sm text-gray-500">Term</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.termCode) }}</p>
+                <p class="font-medium">{{ candidacyData?.programCode }}</p>
             </div>
         </div>
         <div class="flex items-center gap-2">
             <i class="material-icons text-amber-500 text-xl">event</i>
             <div>
-                <p class="text-sm text-gray-500">Baccalaureate Year</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.bacYear) }}</p>
+                <p class="text-sm text-gray-500">Term</p>
+                <p class="font-medium">{{ candidacyData?.termCode }}</p>
             </div>
         </div>
         <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">account_balance</i>
+            <i class="material-icons text-amber-500 text-xl">calendar_today</i>
             <div>
-                <p class="text-sm text-gray-500">High School</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.highSchool) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">account_balance</i>
-            <div>
-                <p class="text-sm text-gray-500">High School Diploma</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.highSchoolDiploma) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">account_balance</i>
-            <div>
-                <p class="text-sm text-gray-500">High School Distinction</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.highSchoolDistinction) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">account_balance</i>
-            <div>
-                <p class="text-sm text-gray-500">HS Organization Type</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.hsOrgTypeAd) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">star</i>
-            <div>
-                <p class="text-sm text-gray-500">Baccalaureate GPA</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.gpa) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">school</i>
-            <div>
-                <p class="text-sm text-gray-500">Total AP Credits</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.totalApCredits) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">school</i>
-            <div>
-                <p class="text-sm text-gray-500">Total Institution Credits</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.totalInstCredits) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">school</i>
-            <div>
-                <p class="text-sm text-gray-500">College Organization Type</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.clOrgTypeAd) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">star</i>
-            <div>
-                <p class="text-sm text-gray-500">College GPA</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.clGpa) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">school</i>
-            <div>
-                <p class="text-sm text-gray-500">College AP Credits</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.clTotalApCredits) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">school</i>
-            <div>
-                <p class="text-sm text-gray-500">College Institution Credits</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.clTotalInstCredits) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">school</i>
-            <div>
-                <p class="text-sm text-gray-500">School Type</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.schoolType) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">format_list_numbered</i>
-            <div>
-                <p class="text-sm text-gray-500">UDEF1A1</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.udef1a1) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">assessment</i>
-            <div>
-                <p class="text-sm text-gray-500">ACT</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.act) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">assessment</i>
-            <div>
-                <p class="text-sm text-gray-500">GAT</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.gat) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">assessment</i>
-            <div>
-                <p class="text-sm text-gray-500">GRE</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.gre) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">assessment</i>
-            <div>
-                <p class="text-sm text-gray-500">SAT</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.sat) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">assessment</i>
-            <div>
-                <p class="text-sm text-gray-500">SAT RC</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.satRc) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">assessment</i>
-            <div>
-                <p class="text-sm text-gray-500">SAT WC</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.satWc) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">assessment</i>
-            <div>
-                <p class="text-sm text-gray-500">TEF</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.tef) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">assessment</i>
-            <div>
-                <p class="text-sm text-gray-500">TOEPP</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.toepp) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">cake</i>
-            <div>
-                <p class="text-sm text-gray-500">Birth Date</p>
-                <p class="font-medium">{{ formatDate(candidacyData.birthDate) }}</p>
+                <p class="text-sm text-gray-500">Academic Year</p>
+                <p class="font-medium">{{ candidacyData?.yearCode }}</p>
             </div>
         </div>
         <div class="flex items-center gap-2">
             <i class="material-icons text-amber-500 text-xl">flag</i>
             <div>
-                <p class="text-sm text-gray-500">Citizenship</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.citizenOf) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">location_city</i>
-            <div>
-                <p class="text-sm text-gray-500">City</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.city) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">public</i>
-            <div>
-                <p class="text-sm text-gray-500">Country</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.country) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">home</i>
-            <div>
-                <p class="text-sm text-gray-500">Address</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.addressLine1) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">badge</i>
-            <div>
-                <p class="text-sm text-gray-500">Birth Name</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.birthName) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">person</i>
-            <div>
-                <p class="text-sm text-gray-500">First Name</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.firstName) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">person</i>
-            <div>
-                <p class="text-sm text-gray-500">Last Name</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.lastName) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">email</i>
-            <div>
-                <p class="text-sm text-gray-500">Email</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.emailAddress) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">wc</i>
-            <div>
-                <p class="text-sm text-gray-500">Gender</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.gender) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">phone</i>
-            <div>
-                <p class="text-sm text-gray-500">Mobile</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.mobile) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">home</i>
-            <div>
-                <p class="text-sm text-gray-500">Father Address</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.fatherAddress) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">home</i>
-            <div>
-                <p class="text-sm text-gray-500">Mother Address</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.motherAddress) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">phone</i>
-            <div>
-                <p class="text-sm text-gray-500">Father Phone</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.fatherPhone) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">phone</i>
-            <div>
-                <p class="text-sm text-gray-500">Mother Phone</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.motherPhone) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">work</i>
-            <div>
-                <p class="text-sm text-gray-500">Father Occupation</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.fatherOccupation) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">work</i>
-            <div>
-                <p class="text-sm text-gray-500">Mother Occupation</p>
-                <p class="font-medium">{{ getValueOrDefault(candidacyData.motherOccupation) }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-amber-500 text-xl">receipt</i>
-            <div>
-                <p class="text-sm text-gray-500">Application Fee Date</p>
-                <p class="font-medium">{{ formatDate(candidacyData.appFeeDate) }}</p>
+                <p class="text-sm text-gray-500">Stage</p>
+                <p class="font-medium">{{ candidacyData?.stage }}</p>
             </div>
         </div>
     </div>
 
-    <!-- Pagination en bas de la carte -->
-    <div class="mt-6 flex justify-center items-center space-x-2" *ngIf="totalCandidacies > 1">
-        <!-- Bouton précédent -->
-        <button (click)="previousPage()" [disabled]="currentPage === 0"
-            class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
-            <i class="material-icons text-sm">chevron_left</i>
-        </button>
-
-        <!-- Boutons des pages -->
-        <ng-container *ngFor="let page of pageNumbers">
-            <span *ngIf="page === -1" class="text-gray-500">...</span>
-            <button *ngIf="page !== -1" (click)="goToPage(page)" [class.bg-amber-500]="currentPage === page"
-                [class.text-white]="currentPage === page"
-                class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100">
-                {{ page + 1 }}
+    <!-- Tabs navigation -->
+    <div class="tabs-navigation border-b border-amber-200 mb-4" *ngIf="candidacyData">
+        <div class="flex overflow-x-auto">
+            <button (click)="setActiveTab('academic')"
+                class="tab-button px-4 py-2 mr-1 rounded-t-lg font-medium text-sm transition-colors"
+                [class.bg-amber-500]="activeTab === 'academic'" [class.text-white]="activeTab === 'academic'"
+                [class.bg-amber-100]="activeTab !== 'academic'" [class.text-amber-700]="activeTab !== 'academic'">
+                <i class="material-icons text-sm mr-1 align-text-bottom">school</i>
+                Academic
             </button>
-        </ng-container>
+            <button (click)="setActiveTab('highschool')"
+                class="tab-button px-4 py-2 mr-1 rounded-t-lg font-medium text-sm transition-colors"
+                [class.bg-amber-500]="activeTab === 'highschool'" [class.text-white]="activeTab === 'highschool'"
+                [class.bg-amber-100]="activeTab !== 'highschool'" [class.text-amber-700]="activeTab !== 'highschool'">
+                <i class="material-icons text-sm mr-1 align-text-bottom">history_edu</i>
+                High School
+            </button>
+            <button (click)="setActiveTab('tests')"
+                class="tab-button px-4 py-2 mr-1 rounded-t-lg font-medium text-sm transition-colors"
+                [class.bg-amber-500]="activeTab === 'tests'" [class.text-white]="activeTab === 'tests'"
+                [class.bg-amber-100]="activeTab !== 'tests'" [class.text-amber-700]="activeTab !== 'tests'">
+                <i class="material-icons text-sm mr-1 align-text-bottom">quiz</i>
+                Test Scores
+            </button>
+            <button (click)="setActiveTab('personal')"
+                class="tab-button px-4 py-2 mr-1 rounded-t-lg font-medium text-sm transition-colors"
+                [class.bg-amber-500]="activeTab === 'personal'" [class.text-white]="activeTab === 'personal'"
+                [class.bg-amber-100]="activeTab !== 'personal'" [class.text-amber-700]="activeTab !== 'personal'">
+                <i class="material-icons text-sm mr-1 align-text-bottom">person</i>
+                Personal
+            </button>
+            <button (click)="setActiveTab('family')"
+                class="tab-button px-4 py-2 mr-1 rounded-t-lg font-medium text-sm transition-colors"
+                [class.bg-amber-500]="activeTab === 'family'" [class.text-white]="activeTab === 'family'"
+                [class.bg-amber-100]="activeTab !== 'family'" [class.text-amber-700]="activeTab !== 'family'">
+                <i class="material-icons text-sm mr-1 align-text-bottom">family_restroom</i>
+                Family
+            </button>
+        </div>
+    </div>
 
-        <!-- Bouton suivant -->
+    <!-- Tab content -->
+    <div *ngIf="candidacyData" class="tab-content">
+        <!-- Academic Tab -->
+        <div *ngIf="activeTab === 'academic'" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Academic Details -->
+            <div class="bg-amber-50 p-3 rounded-lg">
+                <h3 class="font-medium text-amber-700 mb-2 border-b border-amber-200 pb-1">Academic Details</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">domain</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Division</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.divisionCode || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">grade</i>
+                        <div>
+                            <p class="text-xs text-gray-500">GPA</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.gpa || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">school</i>
+                        <div>
+                            <p class="text-xs text-gray-500">School Type</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.schoolType || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">credit_card</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Total AP Credits</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.totalApCredits || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">credit_score</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Total Institution Credits</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.totalInstCredits || 'None' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- College Information -->
+            <div class="bg-amber-50 p-3 rounded-lg">
+                <h3 class="font-medium text-amber-700 mb-2 border-b border-amber-200 pb-1">College Information</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">account_balance</i>
+                        <div>
+                            <p class="text-xs text-gray-500">College Organization Type</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.clOrgTypeAd || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">grade</i>
+                        <div>
+                            <p class="text-xs text-gray-500">College GPA</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.clGpa || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">credit_card</i>
+                        <div>
+                            <p class="text-xs text-gray-500">College AP Credits</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.clTotalApCredits || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">credit_score</i>
+                        <div>
+                            <p class="text-xs text-gray-500">College Institution Credits</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.clTotalInstCredits || 'None' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Information -->
+            <div class="bg-amber-50 p-3 rounded-lg">
+                <h3 class="font-medium text-amber-700 mb-2 border-b border-amber-200 pb-1">Application Information</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">payments</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Application Fee Date</p>
+                            <p class="font-medium text-sm">{{ formatDate(candidacyData?.appFeeDate) }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">description</i>
+                        <div>
+                            <p class="text-xs text-gray-500">User Defined Field</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.udef1a1 || 'None' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- High School Tab -->
+        <div *ngIf="activeTab === 'highschool'" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- High School Information -->
+            <div class="bg-amber-50 p-3 rounded-lg">
+                <h3 class="font-medium text-amber-700 mb-2 border-b border-amber-200 pb-1">High School</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">school</i>
+                        <div>
+                            <p class="text-xs text-gray-500">High School</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.highSchool || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">emoji_events</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Diploma</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.highSchoolDiploma || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">military_tech</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Distinction</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.highSchoolDistinction || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">account_balance</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Organization Type</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.hsOrgTypeAd || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">date_range</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Baccalaureate Year</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.bacYear || 'None' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Scores Tab -->
+        <div *ngIf="activeTab === 'tests'" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Test Scores -->
+            <div class="bg-amber-50 p-3 rounded-lg">
+                <h3 class="font-medium text-amber-700 mb-2 border-b border-amber-200 pb-1">Test Scores</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="flex items-center gap-1">
+                        <i class="material-icons text-amber-500 text-sm">quiz</i>
+                        <div>
+                            <p class="text-xs text-gray-500">ACT</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.act || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <i class="material-icons text-amber-500 text-sm">quiz</i>
+                        <div>
+                            <p class="text-xs text-gray-500">SAT</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.sat || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <i class="material-icons text-amber-500 text-sm">quiz</i>
+                        <div>
+                            <p class="text-xs text-gray-500">GAT</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.gat || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <i class="material-icons text-amber-500 text-sm">quiz</i>
+                        <div>
+                            <p class="text-xs text-gray-500">GRE</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.gre || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <i class="material-icons text-amber-500 text-sm">quiz</i>
+                        <div>
+                            <p class="text-xs text-gray-500">SAT Reading</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.satRc || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <i class="material-icons text-amber-500 text-sm">quiz</i>
+                        <div>
+                            <p class="text-xs text-gray-500">SAT Writing</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.satWc || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <i class="material-icons text-amber-500 text-sm">language</i>
+                        <div>
+                            <p class="text-xs text-gray-500">TEF</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.tef || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <i class="material-icons text-amber-500 text-sm">language</i>
+                        <div>
+                            <p class="text-xs text-gray-500">TOEFL</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.toepp || 'None' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Tab -->
+        <div *ngIf="activeTab === 'personal'" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Personal Information -->
+            <div class="bg-amber-50 p-3 rounded-lg">
+                <h3 class="font-medium text-amber-700 mb-2 border-b border-amber-200 pb-1">Personal Information</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">person</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Name</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.firstName }} {{ candidacyData?.lastName }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">cake</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Birth Date</p>
+                            <p class="font-medium text-sm">{{ formatDate(candidacyData?.birthDate) }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">wc</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Gender</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.gender || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">email</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Email</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.emailAddress || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">phone</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Mobile</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.mobile || 'None' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Information -->
+            <div class="bg-amber-50 p-3 rounded-lg">
+                <h3 class="font-medium text-amber-700 mb-2 border-b border-amber-200 pb-1">Location Information</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">location_on</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Address</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.addressLine1 || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">location_city</i>
+                        <div>
+                            <p class="text-xs text-gray-500">City</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.city || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">public</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Country</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.country || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">flag</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Citizenship</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.citizenOf || 'None' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Family Tab -->
+        <div *ngIf="activeTab === 'family'" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Father Information -->
+            <div class="bg-amber-50 p-3 rounded-lg">
+                <h3 class="font-medium text-amber-700 mb-2 border-b border-amber-200 pb-1">Father Information</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">home</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Address</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.fatherAddress || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">phone</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Phone</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.fatherPhone || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">work</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Occupation</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.fatherOccupation || 'None' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mother Information -->
+            <div class="bg-amber-50 p-3 rounded-lg">
+                <h3 class="font-medium text-amber-700 mb-2 border-b border-amber-200 pb-1">Mother Information</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">home</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Address</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.motherAddress || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">phone</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Phone</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.motherPhone || 'None' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="material-icons text-amber-500 text-sm">work</i>
+                        <div>
+                            <p class="text-xs text-gray-500">Occupation</p>
+                            <p class="font-medium text-sm">{{ candidacyData?.motherOccupation || 'None' }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message if no candidacy data is available -->
+    <div *ngIf="!candidacyData" class="text-center py-4">
+        <p class="text-gray-500">No candidacy information available</p>
+    </div>
+
+    <!-- Pagination controls -->
+    <div class="mt-6 flex justify-between items-center" *ngIf="totalCandidacies > 1">
+        <button (click)="previousPage()" [disabled]="currentPage === 0"
+            class="px-3 py-1 rounded border border-amber-300 bg-amber-50 text-amber-700 flex items-center">
+            <i class="material-icons text-sm mr-1">chevron_left</i>
+            <span>Previous</span>
+        </button>
+
+        <div class="flex space-x-1">
+            <ng-container *ngFor="let page of pageNumbers">
+                <ng-container *ngIf="page !== -1; else ellipsis">
+                    <button (click)="goToPage(page)" class="w-8 h-8 rounded-full flex items-center justify-center"
+                        [class.bg-amber-500]="currentPage === page" [class.text-white]="currentPage === page"
+                        [class.border]="currentPage !== page" [class.border-amber-300]="currentPage !== page"
+                        [class.bg-amber-50]="currentPage !== page" [class.text-amber-700]="currentPage !== page">
+                        {{ page + 1 }}
+                    </button>
+                </ng-container>
+                <ng-template #ellipsis>
+                    <span class="w-8 h-8 flex items-center justify-center text-gray-500">...</span>
+                </ng-template>
+            </ng-container>
+        </div>
+
         <button (click)="nextPage()" [disabled]="currentPage === totalCandidacies - 1"
-            class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
-            <i class="material-icons text-sm">chevron_right</i>
+            class="px-3 py-1 rounded border border-amber-300 bg-amber-50 text-amber-700 flex items-center">
+            <span>Next</span>
+            <i class="material-icons text-sm ml-1">chevron_right</i>
         </button>
     </div>
-</div>
-
-<!-- Message à afficher si aucune donnée n'est disponible -->
-<div class="p-6 text-center" *ngIf="!candidacyData">
-    <p class="text-gray-500">Aucune information de candidature disponible</p>
 </div>

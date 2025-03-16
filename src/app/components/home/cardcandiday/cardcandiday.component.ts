@@ -11,10 +11,13 @@ import { Data } from '../../../models/data';
 export class CardcandidayComponent implements OnChanges {
   @Input() studentData?: any;
   
-  // Variables pour la pagination
+  // Variables for pagination
   currentPage = 0;
   allCandidacies: any[] = [];
   totalCandidacies = 0;
+  
+  // Variable for tabs
+  activeTab = 'academic'; // Default active tab
   
   ngOnChanges(changes: SimpleChanges) {
     if (changes['studentData']) {
@@ -22,20 +25,25 @@ export class CardcandidayComponent implements OnChanges {
     }
   }
   
-  // Initialiser le tableau de toutes les candidatures
+  // Initialize the array of all candidacies
   initializeCandidacies() {
     if (this.studentData && this.studentData.candiday && this.studentData.candiday.length > 0) {
       this.allCandidacies = this.studentData.candiday;
       this.totalCandidacies = this.allCandidacies.length;
       this.currentPage = 0;
-      console.log(`Trouvé ${this.totalCandidacies} candidatures`);
+      console.log(`Found ${this.totalCandidacies} candidacies`);
     } else {
       this.allCandidacies = [];
       this.totalCandidacies = 0;
     }
   }
 
-  // Getter pour accéder à la candidature actuelle (basée sur la page actuelle)
+  // Method to change active tab
+  setActiveTab(tabName: string): void {
+    this.activeTab = tabName;
+  }
+
+  // Getter to access the current candidacy (based on current page)
   get candidacyData() {
     if (this.allCandidacies.length > 0 && this.currentPage < this.allCandidacies.length) {
       return this.allCandidacies[this.currentPage];
@@ -43,7 +51,7 @@ export class CardcandidayComponent implements OnChanges {
     return null;
   }
   
-  // Méthodes de navigation pour la pagination
+  // Navigation methods for pagination
   nextPage() {
     if (this.currentPage < this.totalCandidacies - 1) {
       this.currentPage++;
@@ -62,22 +70,22 @@ export class CardcandidayComponent implements OnChanges {
     }
   }
 
-  // Méthode pour obtenir les pages à afficher (pour la pagination)
+  // Method to get the pages to display (for pagination)
   get pageNumbers(): number[] {
     const pages = [];
-    const maxVisiblePages = 5; // Nombre maximum de boutons de page à afficher
+    const maxVisiblePages = 5; // Maximum number of page buttons to display
     
     if (this.totalCandidacies <= maxVisiblePages) {
-      // Si le nombre total de pages est inférieur au maximum, on affiche toutes les pages
+      // If the total number of pages is less than the maximum, display all pages
       for (let i = 0; i < this.totalCandidacies; i++) {
         pages.push(i);
       }
     } else {
-      // Autrement, afficher la première page, la dernière page, la page courante et une page avant/après
+      // Otherwise, display the first page, the last page, the current page and one page before/after
       let startPage = Math.max(0, this.currentPage - 1);
       let endPage = Math.min(this.totalCandidacies - 1, this.currentPage + 1);
       
-      // Ajuster si on est proche du début ou de la fin
+      // Adjust if we are near the beginning or end
       if (startPage <= 1) {
         endPage = Math.min(this.totalCandidacies - 1, 3);
       }
@@ -89,17 +97,17 @@ export class CardcandidayComponent implements OnChanges {
         pages.push(i);
       }
       
-      // Ajouter des ellipses si nécessaire
+      // Add ellipses if necessary
       if (startPage > 0) {
         pages.unshift(0);
         if (startPage > 1) {
-          pages.splice(1, 0, -1); // '-1' représente une ellipse
+          pages.splice(1, 0, -1); // '-1' represents an ellipsis
         }
       }
       
       if (endPage < this.totalCandidacies - 1) {
         if (endPage < this.totalCandidacies - 2) {
-          pages.push(-1); // '-1' représente une ellipse
+          pages.push(-1); // '-1' represents an ellipsis
         }
         pages.push(this.totalCandidacies - 1);
       }
@@ -108,21 +116,21 @@ export class CardcandidayComponent implements OnChanges {
     return pages;
   }
 
-  // Méthode sécurisée pour formater les dates
+  // Safe method to format dates
   formatDate(dateString: string | null | undefined): string {
     if (!dateString) {
       return 'None';
     }
     try {
       const date = new Date(dateString);
-      return date.toLocaleDateString('fr-FR'); // Format: DD/MM/YYYY
+      return date.toLocaleDateString('en-US'); // Format: MM/DD/YYYY
     } catch (error) {
       console.error('Error formatting date:', error);
       return 'Invalid date';
     }
   }
 
-  // Méthode pour gérer les valeurs nulles
+  // Method to handle null values
   getValueOrDefault(value: any): string {
     return value !== null && value !== undefined ? value.toString() : 'None';
   }

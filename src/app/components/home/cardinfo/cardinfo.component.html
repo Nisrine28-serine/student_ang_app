@@ -4,7 +4,9 @@
         <h2 class="text-xl font-semibold text-gray-800">Personal Information</h2>
         <i class="material-icons text-blue-500">person</i>
     </div>
-    <div class="space-y-3">
+
+    <!-- All information displayed directly -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <!-- Full Name -->
         <div class="flex items-center gap-2">
             <i class="material-icons text-blue-500 text-xl">person</i>
@@ -12,33 +14,6 @@
                 <p class="text-sm text-gray-500">Full Name</p>
                 <p class="font-medium">{{ studentData?.info?.first_name }} {{
                     studentData?.info?.last_name }}</p>
-            </div>
-        </div>
-
-        <!-- Name Format -->
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-blue-500 text-xl">format_quote</i>
-            <div>
-                <p class="text-sm text-gray-500">Name Format</p>
-                <p class="font-medium">{{ studentData?.info?.name_format }}</p>
-            </div>
-        </div>
-
-        <!-- Middle Name -->
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-blue-500 text-xl">text_format</i>
-            <div>
-                <p class="text-sm text-gray-500">Middle Name</p>
-                <p class="font-medium">{{ studentData?.info?.middle_name }}</p>
-            </div>
-        </div>
-
-        <!-- Birth Name -->
-        <div class="flex items-center gap-2" *ngIf="studentData?.info?.birth_name">
-            <i class="material-icons text-blue-500 text-xl">history</i>
-            <div>
-                <p class="text-sm text-gray-500">Birth Name</p>
-                <p class="font-medium">{{ studentData?.info?.birth_name }}</p>
             </div>
         </div>
 
@@ -50,40 +25,93 @@
                 <p class="font-medium">{{ studentData?.info?.email_address }}</p>
             </div>
         </div>
+    </div>
 
-        <!-- Phone -->
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-blue-500 text-xl">phone</i>
-            <div>
-                <p class="text-sm text-gray-500">Phone</p>
-                <p class="font-medium">{{ studentData?.info?.mobile_phone }}</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Contact Information -->
+        <div class="bg-blue-50 p-3 rounded-lg">
+            <h3 class="font-medium text-blue-700 mb-2 border-b border-blue-200 pb-1">Contact Details</h3>
+            <div class="space-y-3">
+                <!-- Phone -->
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-blue-500 text-sm">phone</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Phone</p>
+                        <p class="font-medium text-sm">{{ studentData?.info?.mobile_phone || 'None' }}</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Student ID -->
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-blue-500 text-xl">badge</i>
-            <div>
-                <p class="text-sm text-gray-500">Student ID</p>
-                <p class="font-medium">{{ studentData?.info?.id_num }}</p>
+        <!-- Identification Information -->
+        <div class="bg-blue-50 p-3 rounded-lg">
+            <h3 class="font-medium text-blue-700 mb-2 border-b border-blue-200 pb-1">Identification</h3>
+            <div class="space-y-3">
+                <!-- Student ID -->
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-blue-500 text-sm">badge</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Student ID</p>
+                        <p class="font-medium text-sm">{{ studentData?.info?.id_num || 'None' }}</p>
+                    </div>
+                </div>
+
+                <!-- Application ID -->
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-blue-500 text-sm">assignment</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Application ID</p>
+                        <p class="font-medium text-sm">{{ studentData?.info?.appid || 'None' }}</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Application ID -->
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-blue-500 text-xl">assignment</i>
-            <div>
-                <p class="text-sm text-gray-500">Application ID</p>
-                <p class="font-medium">{{ studentData?.info?.appid }}</p>
+        <!-- Name Details -->
+        <div class="bg-blue-50 p-3 rounded-lg">
+            <h3 class="font-medium text-blue-700 mb-2 border-b border-blue-200 pb-1">Name Details</h3>
+            <div class="space-y-3">
+                <!-- Name Format -->
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-blue-500 text-sm">format_quote</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Name Format</p>
+                        <p class="font-medium text-sm">{{ studentData?.info?.name_format || 'None' }}</p>
+                    </div>
+                </div>
+
+                <!-- Middle Name -->
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-blue-500 text-sm">text_format</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Middle Name</p>
+                        <p class="font-medium text-sm">{{ studentData?.info?.middle_name || 'None' }}</p>
+                    </div>
+                </div>
+
+                <!-- Birth Name -->
+                <div class="flex items-center gap-2" *ngIf="studentData?.info?.birth_name">
+                    <i class="material-icons text-blue-500 text-sm">history</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Birth Name</p>
+                        <p class="font-medium text-sm">{{ studentData?.info?.birth_name }}</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Student Master Employ -->
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-blue-500 text-xl">work</i>
-            <div>
-                <p class="text-sm text-gray-500">Student Master Employ</p>
-                <p class="font-medium">{{studentData?.info?.stud_mstr_employ }}</p>
+        <!-- Employment Information -->
+        <div class="bg-blue-50 p-3 rounded-lg">
+            <h3 class="font-medium text-blue-700 mb-2 border-b border-blue-200 pb-1">Employment</h3>
+            <div class="space-y-3">
+                <!-- Student Master Employ -->
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-blue-500 text-sm">work</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Student Master Employ</p>
+                        <p class="font-medium text-sm">{{ studentData?.info?.stud_mstr_employ || 'None' }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

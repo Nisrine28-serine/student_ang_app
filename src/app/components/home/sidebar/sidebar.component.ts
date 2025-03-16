@@ -20,9 +20,9 @@ export class SidebarComponent {
       link: '/home', 
       active: true,
       subItems: [
-        { title: 'progresse d\'informations', link: '/dashboard/progresse' },
-        { title: 'Statistiques', link: '/dashboard/stats' },
-        { title: 'Rapports', link: '/dashboard/reports' }
+        { title: 'Data Progress', link: '/dashboard/progresse' },
+        { title: 'Statistics', link: '/dashboard/stats' },
+        { title: 'Reports', link: '/dashboard/reports' }
       ]
     },
     // { 
@@ -31,8 +31,8 @@ export class SidebarComponent {
     //   link: '/home', 
     //   active: false,
     //   subItems: [
-    //     { title: 'Informations personnelles', link: '/profile/personal' },
-    //     { title: 'Coordonnées', link: '/profile/contact' },
+    //     { title: 'Personal Information', link: '/profile/personal' },
+    //     { title: 'Contact Details', link: '/profile/contact' },
     //     { title: 'Documents', link: '/profile/documents' }
     //   ]
     // },
@@ -42,9 +42,9 @@ export class SidebarComponent {
     //   link: '/home', 
     //   active: false,
     //   subItems: [
-    //     { title: 'État de la candidature', link: '/admission/status' },
-    //     { title: 'Documents requis', link: '/admission/documents' },
-    //     { title: 'Prochaines étapes', link: '/admission/next-steps' }
+    //     { title: 'Application Status', link: '/admission/status' },
+    //     { title: 'Required Documents', link: '/admission/documents' },
+    //     { title: 'Next Steps', link: '/admission/next-steps' }
     //   ]
     // },
     // { 
@@ -53,9 +53,9 @@ export class SidebarComponent {
     //   link: '/home', 
     //   active: false,
     //   subItems: [
-    //     { title: 'Relevés de notes', link: '/academic/transcripts' },
-    //     { title: 'Cours suivis', link: '/academic/courses' },
-    //     { title: 'Diplômes', link: '/academic/degrees' }
+    //     { title: 'Transcripts', link: '/academic/transcripts' },
+    //     { title: 'Courses Taken', link: '/academic/courses' },
+    //     { title: 'Degrees', link: '/academic/degrees' }
     //   ]
     // }
   ];

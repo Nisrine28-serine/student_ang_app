@@ -10,24 +10,24 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  // Récupérer toutes les données (pour le développement)
+  // Get all data (for development)
   getData(): Observable<any> {
     return this.http.get<any>('http://localhost:3000/data')
       .pipe(
-        tap(response => console.log('Réponse brute de l\'API:', response))
+        tap(response => console.log('Raw API response:', response))
       );
   }
 
-  // Rechercher un étudiant par ID
+  // Search for a student by ID
   getStudentById(studentId: string): Observable<any> {
-    // Comme nous n'avons pas d'API réelle de recherche, nous simulons la recherche côté client
-    // Dans un environnement de production, vous pourriez avoir un endpoint API comme:
+    // Since we don't have a real search API, we simulate client-side search
+    // In a production environment, you might have an API endpoint like:
     // return this.http.get<any>(`http://localhost:3000/data/student/${studentId}`);
     
     return this.http.get<any>('http://localhost:3000/data').pipe(
-      tap(response => console.log('Réponse brute de l\'API:', response)),
+      tap(response => console.log('Raw API response:', response)),
       map(data => {
-        // Vérifier si les données existent et si l'ID correspond
+        // Check if data exists and if the ID matches
         if (data && data.info && data.info.idNum === studentId) {
           return data;
         }

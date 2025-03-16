@@ -4,117 +4,14 @@
         <h2 class="text-xl font-semibold text-gray-800">Student Information</h2>
         <i class="material-icons text-emerald-500">school</i>
     </div>
-    <div class="space-y-3">
+
+    <!-- Important information always visible -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <div class="flex items-center gap-2">
             <i class="material-icons text-emerald-500 text-xl">badge</i>
             <div>
                 <p class="text-sm text-gray-500">Student ID</p>
                 <p class="font-medium">{{ studentData?.student?.idNum }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">work</i>
-            <div>
-                <p class="text-sm text-gray-500">Employment Code</p>
-                <p class="font-medium">{{ studentData?.student?.studentEmployCode }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">group</i>
-            <div>
-                <p class="text-sm text-gray-500">Web Group</p>
-                <p class="font-medium">{{ studentData?.student?.webGroup }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">payments</i>
-            <div>
-                <p class="text-sm text-gray-500">Tuition Code</p>
-                <p class="font-medium">{{ studentData?.student?.tuitionCode }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">calendar_today</i>
-            <div>
-                <p class="text-sm text-gray-500">Entrance Year</p>
-                <p class="font-medium">{{ studentData?.student?.entranceYear }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">event</i>
-            <div>
-                <p class="text-sm text-gray-500">Entrance Term</p>
-                <p class="font-medium">{{ studentData?.student?.entranceTerm }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">school</i>
-            <div>
-                <p class="text-sm text-gray-500">Current Level</p>
-                <p class="font-medium">{{ studentData?.student?.currentClassCode }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">block</i>
-            <div>
-                <p class="text-sm text-gray-500">Hold Code 1</p>
-                <p class="font-medium">{{ studentData?.student?.hold1Code }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">block</i>
-            <div>
-                <p class="text-sm text-gray-500">Hold Code 2</p>
-                <p class="font-medium">{{ studentData?.student?.hold2Code }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">block</i>
-            <div>
-                <p class="text-sm text-gray-500">Hold Code 3</p>
-                <p class="font-medium">{{ studentData?.student?.hold3Code }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">block</i>
-            <div>
-                <p class="text-sm text-gray-500">Hold Code 4</p>
-                <p class="font-medium">{{ studentData?.student?.hold4Code}}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">block</i>
-            <div>
-                <p class="text-sm text-gray-500">Hold Code 5</p>
-                <p class="font-medium">{{ studentData?.student?.hold5Code }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">block</i>
-            <div>
-                <p class="text-sm text-gray-500">Hold Code 6</p>
-                <p class="font-medium">{{ studentData?.student?.hold6Code }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">library_books</i>
-            <div>
-                <p class="text-sm text-gray-500">Number of Courses</p>
-                <p class="font-medium">{{ studentData?.student?.numOfCourses }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">schedule</i>
-            <div>
-                <p class="text-sm text-gray-500">Hours Enrolled</p>
-                <p class="font-medium">{{ studentData?.student?.hoursEnrolled }}</p>
-            </div>
-        </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">emoji_events</i>
-            <div>
-                <p class="text-sm text-gray-500">Hours Earned</p>
-                <p class="font-medium">{{ studentData?.student?.termHoursEarned }}</p>
             </div>
         </div>
         <div class="flex items-center gap-2">
@@ -138,18 +35,153 @@
                 <p class="font-medium">{{ studentData?.student?.major1 }}</p>
             </div>
         </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">menu_book</i>
-            <div>
-                <p class="text-sm text-gray-500">Minor</p>
-                <p class="font-medium">{{ studentData?.student?.minor1 }}</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Academic Information -->
+        <div class="bg-emerald-50 p-3 rounded-lg">
+            <h3 class="font-medium text-emerald-700 mb-2 border-b border-emerald-200 pb-1">Academic Details</h3>
+            <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-emerald-500 text-sm">calendar_today</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Entrance Year</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.entranceYear }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-emerald-500 text-sm">event</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Entrance Term</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.entranceTerm }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-emerald-500 text-sm">school</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Current Level</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.currentClassCode }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-emerald-500 text-sm">menu_book</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Minor</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.minor1 }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-emerald-500 text-sm">architecture</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Concentration</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.concentration1}}</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="flex items-center gap-2">
-            <i class="material-icons text-emerald-500 text-xl">architecture</i>
-            <div>
-                <p class="text-sm text-gray-500">Concentration</p>
-                <p class="font-medium">{{ studentData?.student?.concentration1}}</p>
+
+        <!-- Course Information -->
+        <div class="bg-emerald-50 p-3 rounded-lg">
+            <h3 class="font-medium text-emerald-700 mb-2 border-b border-emerald-200 pb-1">Course Information</h3>
+            <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-emerald-500 text-sm">library_books</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Number of Courses</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.numOfCourses }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-emerald-500 text-sm">schedule</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Hours Enrolled</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.hoursEnrolled }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-emerald-500 text-sm">emoji_events</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Hours Earned</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.termHoursEarned }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Administrative Information -->
+        <div class="bg-emerald-50 p-3 rounded-lg">
+            <h3 class="font-medium text-emerald-700 mb-2 border-b border-emerald-200 pb-1">Administrative</h3>
+            <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-emerald-500 text-sm">work</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Employment Code</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.studentEmployCode }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-emerald-500 text-sm">group</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Web Group</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.webGroup }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="material-icons text-emerald-500 text-sm">payments</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Tuition Code</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.tuitionCode }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hold Codes -->
+        <div class="bg-emerald-50 p-3 rounded-lg">
+            <h3 class="font-medium text-emerald-700 mb-2 border-b border-emerald-200 pb-1">Hold Codes</h3>
+            <div class="grid grid-cols-2 gap-2">
+                <div class="flex items-center gap-1">
+                    <i class="material-icons text-emerald-500 text-sm">block</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Hold 1</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.hold1Code || 'None' }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1">
+                    <i class="material-icons text-emerald-500 text-sm">block</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Hold 2</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.hold2Code || 'None' }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1">
+                    <i class="material-icons text-emerald-500 text-sm">block</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Hold 3</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.hold3Code || 'None' }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1">
+                    <i class="material-icons text-emerald-500 text-sm">block</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Hold 4</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.hold4Code || 'None' }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1">
+                    <i class="material-icons text-emerald-500 text-sm">block</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Hold 5</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.hold5Code || 'None' }}</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1">
+                    <i class="material-icons text-emerald-500 text-sm">block</i>
+                    <div>
+                        <p class="text-xs text-gray-500">Hold 6</p>
+                        <p class="font-medium text-sm">{{ studentData?.student?.hold6Code || 'None' }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

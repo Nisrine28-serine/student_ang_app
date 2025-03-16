@@ -8,6 +8,5 @@ import { Data } from '../../../models/data';
   styleUrl: './cardstudent.component.css'
 })
 export class CardstudentComponent {
-   constructor(){}
-   @Input() studentData ? : Data;
+  @Input() studentData?: any;
 }

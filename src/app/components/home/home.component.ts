@@ -25,7 +25,7 @@ export class HomeComponent {
 
   onSearch(): void {
     if (!this.searchQuery || this.searchQuery.trim() === '') {
-      this.searchError = 'Veuillez entrer un ID d\'étudiant';
+      this.searchError = 'Please enter a student ID';
       return;
     }
 
@@ -37,17 +37,17 @@ export class HomeComponent {
     this.dataService.getData().subscribe({
       next: (data) => {
         this.studentData = data;
-        console.log('Données reçues:', this.studentData);
+        console.log('Data received:', this.studentData);
         this.isSearching = false;
         
         // Si aucune donnée n'est trouvée
         if (!this.studentData) {
-          this.searchError = 'Aucun étudiant trouvé avec cet ID';
+          this.searchError = 'No student found with this ID';
         }
       },
       error: (err) => {
-        console.error('Erreur lors de la récupération des données:', err);
-        this.searchError = 'Erreur lors de la récupération des données. Veuillez réessayer.';
+        console.error('Error retrieving data:', err);
+        this.searchError = 'Error retrieving data. Please try again.';
         this.isSearching = false;
       }
     });
@@ -56,17 +56,17 @@ export class HomeComponent {
     this.dataService.getStudentById(this.searchQuery.trim()).subscribe({
       next: (data) => {
        this.studentData = data;
-        console.log('Données reçues:', this.studentData);
+        console.log('Data received:', this.studentData);
         this.isSearching = false;
         
         // Si aucune donnée n'est trouvée
         if (!this.studentData) {
-          this.searchError = 'Aucun étudiant trouvé avec cet ID';
+          this.searchError = 'No student found with this ID';
         }
       },
       error: (err) => {
-        console.error('Erreur lors de la récupération des données:', err);
-        this.searchError = 'Erreur lors de la récupération des données. Veuillez réessayer.';
+        console.error('Error retrieving data:', err);
+        this.searchError = 'Error retrieving data. Please try again.';
         this.isSearching = false;
       }
     });

@@ -33,6 +33,31 @@
     border-radius: 2px;
 }
 
+/* Styles pour les sections */
+.bg-amber-50 {
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.bg-amber-50:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Styles pour les boutons de pagination */
+button {
+    transition: all 0.2s ease;
+    border-radius: 0.25rem;
+}
+
+button:hover:not(:disabled) {
+    background-color: #fffbeb;
+}
+
+button:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
 /* Styles pour la pagination */
 .mt-6 {
   border-top: 1px solid #f0f0f0;
@@ -57,4 +82,97 @@ button.bg-amber-500 {
 p.text-sm.text-gray-500 {
   margin-top: 4px;
   font-size: 0.8rem;
+}
+
+/* Styles pour les icônes */
+.material-icons {
+    transition: transform 0.3s ease;
+}
+
+button:hover:not(:disabled) .material-icons {
+    transform: translateY(-1px);
+}
+
+/* Styles pour les grilles */
+.grid {
+    transition: all 0.3s ease;
+}
+
+/* Styles pour les textes */
+.font-medium {
+    color: #374151;
+}
+
+.text-gray-500 {
+    font-size: 0.75rem;
+}
+
+/* Styles pour les onglets */
+.tabs-navigation {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.tabs-navigation .flex {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.tabs-navigation .flex::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.tab-button {
+    position: relative;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border: 1px solid transparent;
+}
+
+.tab-button:hover {
+    transform: translateY(-2px);
+}
+
+.tab-button.bg-amber-500 {
+    border-bottom: none;
+    border-color: #f59e0b;
+}
+
+.tab-button.bg-amber-100 {
+    border-color: #fef3c7;
+}
+
+/* Animation pour le contenu des onglets */
+.tab-content > div {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Styles pour les écrans mobiles */
+@media (max-width: 768px) {
+    .md\:grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+    
+    .tabs-navigation .flex {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+    }
+    
+    .tab-button {
+        flex: 0 0 auto;
+    }
 }

@@ -1,0 +1,300 @@
+.progress-page {
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    height: auto;
+    overflow-y: auto;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: white;
+    width: 100%;
+}
+
+.content-container {
+    flex: 1;
+    overflow-y: auto;
+    padding-bottom: 2rem;
+    width: 100%;
+}
+
+.summary-section, .details-section > div > div {
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.details-section {
+    overflow-y: auto;
+    padding-bottom: 2rem;
+    width: 100%;
+}
+
+/* Styles pour les listes de champs manquants */
+.missing-fields-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    scrollbar-width: thin;
+}
+
+.missing-fields-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.missing-fields-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.missing-fields-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.missing-fields-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Animation pour les listes de champs manquants */
+.missing-fields-list {
+    animation: slideDown 0.3s ease-out forwards;
+    transform-origin: top;
+}
+
+@keyframes slideDown {
+    from { 
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    to { 
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+/* Styles pour les boutons d'affichage */
+button {
+    transition: all 0.2s ease;
+    border-radius: 0.5rem;
+    font-weight: 500;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Animation pour les barres de progression */
+.bg-blue-500, .bg-emerald-500, .bg-amber-500 {
+    transition: width 1.5s ease-in-out;
+    animation: growWidth 1.5s ease-in-out;
+}
+
+@keyframes growWidth {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Styles pour les badges de pourcentage */
+.text-red-600 {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+.text-yellow-600 {
+    background-color: rgba(245, 158, 11, 0.1);
+}
+
+.text-green-600 {
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+/* Animation d'entrée pour les cartes */
+.bg-blue-50, .bg-emerald-50, .bg-amber-50 {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.bg-blue-50 {
+    animation-delay: 0.1s;
+}
+
+.bg-emerald-50 {
+    animation-delay: 0.3s;
+}
+
+.bg-amber-50 {
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Styles pour les tableaux */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.overflow-x-auto {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+th {
+    font-weight: 600;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    background-color: inherit;
+    z-index: 1;
+}
+
+tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Animation pour les lignes du tableau */
+tbody tr {
+    animation: slideIn 0.3s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Appliquer un délai d'animation différent pour chaque ligne */
+tbody tr:nth-child(1) { animation-delay: 0.1s; }
+tbody tr:nth-child(2) { animation-delay: 0.15s; }
+tbody tr:nth-child(3) { animation-delay: 0.2s; }
+tbody tr:nth-child(4) { animation-delay: 0.25s; }
+tbody tr:nth-child(5) { animation-delay: 0.3s; }
+tbody tr:nth-child(6) { animation-delay: 0.35s; }
+tbody tr:nth-child(7) { animation-delay: 0.4s; }
+tbody tr:nth-child(8) { animation-delay: 0.45s; }
+tbody tr:nth-child(9) { animation-delay: 0.5s; }
+tbody tr:nth-child(10) { animation-delay: 0.55s; }
+/* Les lignes suivantes auront un délai de 0.6s */
+tbody tr:nth-child(n+11) { animation-delay: 0.6s; }
+
+/* Styles pour les badges de statut */
+.inline-flex {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Styles pour les écrans mobiles */
+@media (max-width: 768px) {
+    .grid-cols-3 {
+        grid-template-columns: 1fr;
+    }
+    
+    .circle-progress-container {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .progress-page {
+        padding: 0.5rem;
+        max-height: none;
+        height: auto;
+    }
+    
+    .content-container {
+        height: auto;
+    }
+    
+    .missing-fields-list {
+        max-height: 150px;
+    }
+}
+
+/* Styles pour les graphiques circulaires */
+.circular-chart {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3.8;
+}
+
+.circle {
+    fill: none;
+    stroke-width: 3.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+}
+
+.percentage {
+    fill: #666;
+    font-family: sans-serif;
+    font-size: 0.5em;
+    text-anchor: middle;
+    font-weight: bold;
+}
+
+@keyframes progress {
+    0% {
+        stroke-dasharray: 0 100;
+    }
+}
+
+/* Styles pour les messages de félicitations */
+.text-center i.material-icons {
+    display: block;
+    margin: 0 auto;
+}
+
+/* Assurer que le contenu est scrollable */
+html, body {
+    height: 100%;
+    overflow: auto;
+    width: 100%;
+}
+
+:host {
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+/* Assurer que la grille prend toute la largeur */
+.grid {
+    width: 100%;
+}
+
+.grid-cols-1 {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+    }
+}
