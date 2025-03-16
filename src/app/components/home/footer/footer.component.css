@@ -1,0 +1,37 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: #6c757d;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    gap: 5px;
+}
+
+.copyright {
+    font-weight: 400;
+}
+
+.university-link {
+    color: #4a9eda;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.university-link:hover {
+    color: #0072bc;
+    text-decoration: underline;
+}

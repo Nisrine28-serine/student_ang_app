@@ -1,0 +1,90 @@
+<div
+    class="card-wrapper bg-gradient-to-br from-blue-50 to-white rounded-lg shadow-lg p-6 border-t-4 border-blue-500 hover:shadow-xl transition-all duration-300">
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold text-gray-800">Personal Information</h2>
+        <i class="material-icons text-blue-500">person</i>
+    </div>
+    <div class="space-y-3">
+        <!-- Full Name -->
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-blue-500 text-xl">person</i>
+            <div>
+                <p class="text-sm text-gray-500">Full Name</p>
+                <p class="font-medium">{{ studentData?.info?.first_name }} {{
+                    studentData?.info?.last_name }}</p>
+            </div>
+        </div>
+
+        <!-- Name Format -->
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-blue-500 text-xl">format_quote</i>
+            <div>
+                <p class="text-sm text-gray-500">Name Format</p>
+                <p class="font-medium">{{ studentData?.info?.name_format }}</p>
+            </div>
+        </div>
+
+        <!-- Middle Name -->
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-blue-500 text-xl">text_format</i>
+            <div>
+                <p class="text-sm text-gray-500">Middle Name</p>
+                <p class="font-medium">{{ studentData?.info?.middle_name }}</p>
+            </div>
+        </div>
+
+        <!-- Birth Name -->
+        <div class="flex items-center gap-2" *ngIf="studentData?.info?.birth_name">
+            <i class="material-icons text-blue-500 text-xl">history</i>
+            <div>
+                <p class="text-sm text-gray-500">Birth Name</p>
+                <p class="font-medium">{{ studentData?.info?.birth_name }}</p>
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-blue-500 text-xl">email</i>
+            <div>
+                <p class="text-sm text-gray-500">Email</p>
+                <p class="font-medium">{{ studentData?.info?.email_address }}</p>
+            </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-blue-500 text-xl">phone</i>
+            <div>
+                <p class="text-sm text-gray-500">Phone</p>
+                <p class="font-medium">{{ studentData?.info?.mobile_phone }}</p>
+            </div>
+        </div>
+
+        <!-- Student ID -->
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-blue-500 text-xl">badge</i>
+            <div>
+                <p class="text-sm text-gray-500">Student ID</p>
+                <p class="font-medium">{{ studentData?.info?.id_num }}</p>
+            </div>
+        </div>
+
+        <!-- Application ID -->
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-blue-500 text-xl">assignment</i>
+            <div>
+                <p class="text-sm text-gray-500">Application ID</p>
+                <p class="font-medium">{{ studentData?.info?.appid }}</p>
+            </div>
+        </div>
+
+        <!-- Student Master Employ -->
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-blue-500 text-xl">work</i>
+            <div>
+                <p class="text-sm text-gray-500">Student Master Employ</p>
+                <p class="font-medium">{{studentData?.info?.stud_mstr_employ }}</p>
+            </div>
+        </div>
+    </div>
+</div>

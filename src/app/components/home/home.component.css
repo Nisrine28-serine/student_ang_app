@@ -1,0 +1,126 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f9fafb;
+}
+
+.header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.page-content-body {
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.card-item {
+    min-width: 350px;
+}
+
+/* Style pour la navigation dropdown */
+.navigation-dropdown {
+    display: block;
+    width: 100%;
+}
+
+/* Style pour le footer */
+.footer {
+    margin-top: auto;
+}
+
+/* Styles pour les écrans mobiles */
+@media (max-width: 768px) {
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-item {
+        min-width: 100%;
+    }
+}
+
+/* Styles pour la visualisation de progression */
+.data-progress-container {
+    transition: all 0.3s ease;
+}
+
+.data-progress-container:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.data-progress-container h3 {
+    color: #1f2937;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+}
+
+/* Animation pour les barres de progression */
+.bg-blue-500, .bg-emerald-500, .bg-amber-500 {
+    transition: width 1s ease-in-out;
+}
+
+/* Styles pour le badge de pourcentage */
+.text-red-600 {
+    background-color: rgba(239, 68, 68, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+}
+
+.text-yellow-600 {
+    background-color: rgba(245, 158, 11, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+}
+
+.text-green-600 {
+    background-color: rgba(16, 185, 129, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+}
+
+/* Animation d'entrée pour les cartes de progression */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bg-blue-50, .bg-emerald-50, .bg-amber-50 {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.bg-blue-50 {
+    animation-delay: 0.1s;
+}
+
+.bg-emerald-50 {
+    animation-delay: 0.3s;
+}
+
+.bg-amber-50 {
+    animation-delay: 0.5s;
+}

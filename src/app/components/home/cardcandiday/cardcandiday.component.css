@@ -1,0 +1,60 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+.card-wrapper {
+    width: 100%;
+    min-width: 350px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Add scrolling for overflow content */
+.space-y-3 {
+    overflow-y: auto;
+    flex: 1;
+    padding-right: 4px;
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Customize scrollbar */
+.space-y-3::-webkit-scrollbar {
+    width: 4px;
+}
+
+.space-y-3::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.space-y-3::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 2px;
+}
+
+/* Styles pour la pagination */
+.mt-6 {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 1rem;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+  background-color: #fef3c7;
+  border-color: #f59e0b;
+}
+
+button.bg-amber-500 {
+  border-color: #f59e0b;
+}
+
+/* Style pour le badge indiquant le nombre de candidatures */
+p.text-sm.text-gray-500 {
+  margin-top: 4px;
+  font-size: 0.8rem;
+}

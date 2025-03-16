@@ -1,0 +1,33 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+.card-wrapper {
+    width: 100%;
+    min-width: 350px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Add scrolling for overflow content */
+.space-y-3 {
+    overflow-y: auto;
+    flex: 1;
+    padding-right: 4px;
+}
+
+/* Customize scrollbar */
+.space-y-3::-webkit-scrollbar {
+    width: 4px;
+}
+
+.space-y-3::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.space-y-3::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 2px;
+}

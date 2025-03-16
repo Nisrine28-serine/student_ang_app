@@ -1,0 +1,108 @@
+<div class="page flex flex-col">
+    <!-- Header unifié avec navigation et recherche -->
+    <header class="w-full bg-white shadow-md py-3">
+        <div class="container mx-auto">
+            <!-- Première rangée: Logo et recherche -->
+            <div class="flex justify-between items-center px-4 mb-2">
+                <div class="flex items-center">
+                    <i class="material-icons text-blue-600 mr-2">school</i>
+                    <h1 class="text-lg font-bold text-gray-800">Al Akhawayn University</h1>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <input type="text" placeholder="Search by Student ID" [(ngModel)]="searchQuery"
+                        (keyup.enter)="onSearch()"
+                        class="border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                    <button (click)="onSearch()"
+                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        Search
+                    </button>
+                </div>
+            </div>
+
+            <!-- Deuxième rangée: Messages d'erreur/statut -->
+            <div class="px-4">
+                <div *ngIf="searchError" class="text-red-500 text-sm">{{ searchError }}</div>
+                <div *ngIf="isSearching" class="text-blue-500 text-sm">Recherche en cours...</div>
+            </div>
+
+            <!-- Troisième rangée: Navigation -->
+            <app-sidebar class="navigation-dropdown"></app-sidebar>
+        </div>
+    </header>
+
+    <div class="page-content w-full">
+        <div class="page-content-body">
+            <!-- Visualisation de la progression - Affiché seulement si studentData existe -->
+            <div class="data-progress-container bg-white rounded-lg shadow-md p-4 mb-6" *ngIf="studentData">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Data Completeness Overview</h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- Progression des informations personnelles -->
+                    <div class="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-medium text-blue-700">Personal Information</h4>
+                            <span class="text-sm font-bold" [ngClass]="getPersonalInfoCompletionClass()">
+                                {{ getPersonalInfoCompletion() }}%
+                            </span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-blue-500 h-2.5 rounded-full"
+                                [style.width]="getPersonalInfoCompletion() + '%'"></div>
+                        </div>
+                        <p class="text-xs text-gray-600 mt-2">
+                            {{ getPersonalInfoMissing() }} fields missing
+                        </p>
+                    </div>
+
+                    <!-- Progression des informations académiques -->
+                    <div class="bg-emerald-50 rounded-lg p-4 border-l-4 border-emerald-500">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-medium text-emerald-700">Student Information</h4>
+                            <span class="text-sm font-bold" [ngClass]="getStudentInfoCompletionClass()">
+                                {{ getStudentInfoCompletion() }}%
+                            </span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-emerald-500 h-2.5 rounded-full"
+                                [style.width]="getStudentInfoCompletion() + '%'"></div>
+                        </div>
+                        <p class="text-xs text-gray-600 mt-2">
+                            {{ getStudentInfoMissing() }} fields missing
+                        </p>
+                    </div>
+
+                    <!-- Progression des informations de candidature -->
+                    <div class="bg-amber-50 rounded-lg p-4 border-l-4 border-amber-500">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-medium text-amber-700">Academic Information</h4>
+                            <span class="text-sm font-bold" [ngClass]="getCandidacyInfoCompletionClass()">
+                                {{ getCandidacyInfoCompletion() }}%
+                            </span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-amber-500 h-2.5 rounded-full"
+                                [style.width]="getCandidacyInfoCompletion() + '%'"></div>
+                        </div>
+                        <p class="text-xs text-gray-600 mt-2">
+                            {{ getCandidacyInfoMissing() }} fields missing
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Affiche uniquement si studentData existe -->
+            <div class="cards-container" *ngIf="studentData">
+                <app-cardinfo class="card-item" [studentData]="studentData"></app-cardinfo>
+                <app-cardstudent class="card-item" [studentData]="studentData"></app-cardstudent>
+                <app-cardcandiday class="card-item" [studentData]="studentData"></app-cardcandiday>
+            </div>
+
+            <!-- Message si aucune recherche n'a encore été effectuée -->
+            <div *ngIf="!studentData && !isSearching" class="text-center mt-10 text-gray-600">
+                <p>Entrez un identifiant d'étudiant et cliquez sur "Search" pour afficher les informations</p>
+            </div>
+        </div>
+        <app-footer class="footer"></app-footer>
+    </div>
+</div>

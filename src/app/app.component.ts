@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'student_app';
+  sidebarCollapsed = false;
+  
+  onToggleSidebar(collapsed: boolean) {
+    this.sidebarCollapsed = collapsed;
+  }
 }

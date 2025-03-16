@@ -1,0 +1,45 @@
+/* Global styles for the home components */
+
+/* Header Styles */
+.header {
+    background-color: #0072bc;
+    color: white;
+    padding: 16px 0;
+}
+.header h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.header input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+.sidebar .menu-item {
+    color: #0072bc;
+    transition: color 0.2s;
+}
+.sidebar .menu-item:hover {
+    color: #005a94;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #f3f4f6;
+    padding: 16px 0;
+    text-align: center;
+}
+.footer a {
+    color: #0072bc;
+    transition: color 0.2s;
+}
+.footer a:hover {
+    color: #005a94;
+}

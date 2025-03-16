@@ -1,0 +1,369 @@
+<div class="card-wrapper bg-gradient-to-br from-amber-50 to-white rounded-lg shadow-lg p-6 border-t-4 border-amber-500 hover:shadow-xl transition-all duration-300"
+    *ngIf="candidacyData">
+    <!-- Entête avec nombre de candidatures et pagination -->
+    <div class="flex items-center justify-between mb-4">
+        <div>
+            <h2 class="text-xl font-semibold text-gray-800">Academic Information</h2>
+            <p class="text-sm text-gray-500" *ngIf="totalCandidacies > 0">
+                Candidature {{ currentPage + 1 }} sur {{ totalCandidacies }}
+            </p>
+        </div>
+        <i class="material-icons text-amber-500">how_to_reg</i>
+    </div>
+
+    <!-- Contenu de la carte -->
+    <div class="space-y-3">
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">badge</i>
+            <div>
+                <p class="text-sm text-gray-500">Student ID</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.idNum) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">date_range</i>
+            <div>
+                <p class="text-sm text-gray-500">Academic Year</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.yearCode) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">category</i>
+            <div>
+                <p class="text-sm text-gray-500">Division</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.divisionCode) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">assignment_turned_in</i>
+            <div>
+                <p class="text-sm text-gray-500">Status</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.stage) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">school</i>
+            <div>
+                <p class="text-sm text-gray-500">Program</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.programCode) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">today</i>
+            <div>
+                <p class="text-sm text-gray-500">Term</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.termCode) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">event</i>
+            <div>
+                <p class="text-sm text-gray-500">Baccalaureate Year</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.bacYear) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">account_balance</i>
+            <div>
+                <p class="text-sm text-gray-500">High School</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.highSchool) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">account_balance</i>
+            <div>
+                <p class="text-sm text-gray-500">High School Diploma</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.highSchoolDiploma) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">account_balance</i>
+            <div>
+                <p class="text-sm text-gray-500">High School Distinction</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.highSchoolDistinction) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">account_balance</i>
+            <div>
+                <p class="text-sm text-gray-500">HS Organization Type</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.hsOrgTypeAd) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">star</i>
+            <div>
+                <p class="text-sm text-gray-500">Baccalaureate GPA</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.gpa) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">school</i>
+            <div>
+                <p class="text-sm text-gray-500">Total AP Credits</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.totalApCredits) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">school</i>
+            <div>
+                <p class="text-sm text-gray-500">Total Institution Credits</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.totalInstCredits) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">school</i>
+            <div>
+                <p class="text-sm text-gray-500">College Organization Type</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.clOrgTypeAd) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">star</i>
+            <div>
+                <p class="text-sm text-gray-500">College GPA</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.clGpa) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">school</i>
+            <div>
+                <p class="text-sm text-gray-500">College AP Credits</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.clTotalApCredits) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">school</i>
+            <div>
+                <p class="text-sm text-gray-500">College Institution Credits</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.clTotalInstCredits) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">school</i>
+            <div>
+                <p class="text-sm text-gray-500">School Type</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.schoolType) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">format_list_numbered</i>
+            <div>
+                <p class="text-sm text-gray-500">UDEF1A1</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.udef1a1) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">assessment</i>
+            <div>
+                <p class="text-sm text-gray-500">ACT</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.act) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">assessment</i>
+            <div>
+                <p class="text-sm text-gray-500">GAT</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.gat) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">assessment</i>
+            <div>
+                <p class="text-sm text-gray-500">GRE</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.gre) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">assessment</i>
+            <div>
+                <p class="text-sm text-gray-500">SAT</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.sat) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">assessment</i>
+            <div>
+                <p class="text-sm text-gray-500">SAT RC</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.satRc) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">assessment</i>
+            <div>
+                <p class="text-sm text-gray-500">SAT WC</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.satWc) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">assessment</i>
+            <div>
+                <p class="text-sm text-gray-500">TEF</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.tef) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">assessment</i>
+            <div>
+                <p class="text-sm text-gray-500">TOEPP</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.toepp) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">cake</i>
+            <div>
+                <p class="text-sm text-gray-500">Birth Date</p>
+                <p class="font-medium">{{ formatDate(candidacyData.birthDate) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">flag</i>
+            <div>
+                <p class="text-sm text-gray-500">Citizenship</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.citizenOf) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">location_city</i>
+            <div>
+                <p class="text-sm text-gray-500">City</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.city) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">public</i>
+            <div>
+                <p class="text-sm text-gray-500">Country</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.country) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">home</i>
+            <div>
+                <p class="text-sm text-gray-500">Address</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.addressLine1) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">badge</i>
+            <div>
+                <p class="text-sm text-gray-500">Birth Name</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.birthName) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">person</i>
+            <div>
+                <p class="text-sm text-gray-500">First Name</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.firstName) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">person</i>
+            <div>
+                <p class="text-sm text-gray-500">Last Name</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.lastName) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">email</i>
+            <div>
+                <p class="text-sm text-gray-500">Email</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.emailAddress) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">wc</i>
+            <div>
+                <p class="text-sm text-gray-500">Gender</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.gender) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">phone</i>
+            <div>
+                <p class="text-sm text-gray-500">Mobile</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.mobile) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">home</i>
+            <div>
+                <p class="text-sm text-gray-500">Father Address</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.fatherAddress) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">home</i>
+            <div>
+                <p class="text-sm text-gray-500">Mother Address</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.motherAddress) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">phone</i>
+            <div>
+                <p class="text-sm text-gray-500">Father Phone</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.fatherPhone) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">phone</i>
+            <div>
+                <p class="text-sm text-gray-500">Mother Phone</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.motherPhone) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">work</i>
+            <div>
+                <p class="text-sm text-gray-500">Father Occupation</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.fatherOccupation) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">work</i>
+            <div>
+                <p class="text-sm text-gray-500">Mother Occupation</p>
+                <p class="font-medium">{{ getValueOrDefault(candidacyData.motherOccupation) }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <i class="material-icons text-amber-500 text-xl">receipt</i>
+            <div>
+                <p class="text-sm text-gray-500">Application Fee Date</p>
+                <p class="font-medium">{{ formatDate(candidacyData.appFeeDate) }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination en bas de la carte -->
+    <div class="mt-6 flex justify-center items-center space-x-2" *ngIf="totalCandidacies > 1">
+        <!-- Bouton précédent -->
+        <button (click)="previousPage()" [disabled]="currentPage === 0"
+            class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
+            <i class="material-icons text-sm">chevron_left</i>
+        </button>
+
+        <!-- Boutons des pages -->
+        <ng-container *ngFor="let page of pageNumbers">
+            <span *ngIf="page === -1" class="text-gray-500">...</span>
+            <button *ngIf="page !== -1" (click)="goToPage(page)" [class.bg-amber-500]="currentPage === page"
+                [class.text-white]="currentPage === page"
+                class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100">
+                {{ page + 1 }}
+            </button>
+        </ng-container>
+
+        <!-- Bouton suivant -->
+        <button (click)="nextPage()" [disabled]="currentPage === totalCandidacies - 1"
+            class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
+            <i class="material-icons text-sm">chevron_right</i>
+        </button>
+    </div>
+</div>
+
+<!-- Message à afficher si aucune donnée n'est disponible -->
+<div class="p-6 text-center" *ngIf="!candidacyData">
+    <p class="text-gray-500">Aucune information de candidature disponible</p>
+</div>
