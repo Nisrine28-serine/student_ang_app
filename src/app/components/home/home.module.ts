@@ -11,7 +11,7 @@ import { CardinfoComponent } from './cardinfo/cardinfo.component';
 import { CardstudentComponent } from './cardstudent/cardstudent.component';
 import { CardcandidayComponent } from './cardcandiday/cardcandiday.component';
 import { ProgressComponent } from './progress/progress.component';
-
+import { ProgressDashboardComponent } from './progress-dashboard/progress-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,9 @@ import { ProgressComponent } from './progress/progress.component';
     CardinfoComponent,
     CardstudentComponent,
     CardcandidayComponent,
-    ProgressComponent
+    ProgressComponent,
+    ProgressDashboardComponent,
+    
   ],
   imports: [
     CommonModule,

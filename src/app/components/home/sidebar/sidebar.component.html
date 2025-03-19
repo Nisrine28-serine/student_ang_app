@@ -1,32 +1,17 @@
-<!-- Navigation avec dropdown -->
+<!-- Navigation simplifiée -->
 <div class="navbar-dropdown w-full">
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto">
         <nav class="flex border-t border-gray-200 pt-2">
-            <!-- Navigation principale avec dropdowns -->
+            <!-- Navigation principale -->
             <div class="flex space-x-1">
-                <!-- Dropdown Menu Items -->
+                <!-- Menu Items -->
                 <div *ngFor="let item of menuItems; let i = index">
-                    <ng-container *ngIf="i !== 0">
-                        <div class="dropdown relative" [class.active]="isDropdownActive(i)">
-                            <a [routerLink]="item.link" (click)="setActiveItem(i)"
-                                class="flex items-center px-3 py-2 rounded hover:bg-gray-100 transition-colors duration-200"
-                                [class.bg-blue-50]="item.active" [class.text-blue-600]="item.active">
-                                <i class="material-icons mr-1"
-                                    [ngClass]="{'text-blue-600': item.active}">{{item.icon}}</i>
-                                <span>{{item.title}}</span>
-                                <i class="material-icons ml-1 text-sm"
-                                    *ngIf="item.subItems && item.subItems.length">arrow_drop_down</i>
-                            </a>
-                            <!-- Dropdown content -->
-                            <div *ngIf="item.subItems && item.subItems.length"
-                                class="dropdown-content hidden absolute left-0 mt-1 bg-white shadow-lg rounded-md py-1 min-w-[200px] z-50">
-                                <a *ngFor="let subItem of item.subItems" [routerLink]="subItem.link"
-                                    class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                                    {{subItem.title}}
-                                </a>
-                            </div>
-                        </div>
-                    </ng-container>
+                    <a [routerLink]="item.link" (click)="setActiveItem(i)"
+                        class="flex items-center px-3 py-2 rounded hover:bg-gray-100 transition-colors duration-200"
+                        [class.bg-blue-50]="item.active" [class.text-blue-600]="item.active">
+                        <i class="material-icons mr-1" [ngClass]="{'text-blue-600': item.active}">{{item.icon}}</i>
+                        <span>{{item.title}}</span>
+                    </a>
                 </div>
             </div>
 

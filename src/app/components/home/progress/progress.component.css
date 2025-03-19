@@ -21,10 +21,15 @@
 }
 
 .content-container {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between !important;
     flex: 1;
     overflow-y: auto;
     padding-bottom: 2rem;
-    width: 100%;
+    width: 90%;
 }
 
 .summary-section, .details-section > div > div {

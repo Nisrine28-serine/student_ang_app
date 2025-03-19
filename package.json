@@ -20,12 +20,23 @@
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
+    "@coreui/angular-chartjs": "5.4",
+    "@coreui/chartjs": "^4.0.0",
+    "@swimlane/ngx-charts": "^22.0.0-alpha.0",
     "@tailwindcss/postcss": "^4.0.14",
     "angular-feather": "^6.5.1",
     "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.8",
     "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "d3": "^7.9.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
     "feather-icons": "^4.29.2",
     "json-server": "^1.0.0-beta.3",
+    "lodash-es": "^4.17.21",
+    "mysql2": "^3.13.0",
+    "ng2-charts": "^8.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
@@ -45,5 +56,10 @@
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.14",
     "typescript": "~5.7.2"
-  }
+  },
+  "description": "This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

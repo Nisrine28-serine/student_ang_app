@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+/* @import "@coreui/chartjs/scss/coreui-chartjs"; */
 html, body { 
     height: 100%; 
     width: 100%;
@@ -27,3 +27,6 @@ app-root {
     width: 100%;
     max-width: 100%;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

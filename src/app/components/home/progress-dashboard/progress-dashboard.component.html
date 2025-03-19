@@ -1,0 +1,144 @@
+<!-- progress-dashboard.component.html -->
+<div class="dashboard-container">
+  <div class="header bg-white shadow-md p-4 mb-6 rounded-lg w-full">
+    <div class="flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-gray-800">Student Progress Analytics</h1>
+        <a routerLink=".."
+            class="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors cursor-pointer">
+            <i class="material-icons">arrow_back</i>
+            <span>Back</span>
+        </a>
+    </div>
+</div>
+
+  <!-- Cartes de statistiques principales -->
+  <div class="stats-cards">
+    <div class="stat-card">
+      <div class="stat-content">
+        <div class="stat-label">Number of Students</div>
+        <div class="stat-value">{{ totalStudents }}</div>
+        <div class="stat-trend positive">+5% compared to last semester</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-content">
+        <div class="stat-label">Average GPA</div>
+        <div class="stat-value">{{ avgGpa | number:'1.2-2' }}</div>
+        <div class="stat-trend positive">+0.2 compared to last semester</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-content">
+        <div class="stat-label">Total Hours Enrolled</div>
+        <div class="stat-value">{{ totalHoursEnrolled }}</div>
+        <div class="stat-trend negative">-2% compared to last semester</div>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-content">
+        <div class="stat-label">Average Courses per Student</div>
+        <div class="stat-value">{{ avgCoursesPerStudent | number:'1.1-1' }}</div>
+        <div class="stat-trend positive">+8% compared to last semester</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-section">
+    <!-- GPA Distribution -->
+    <div class="data-card">
+      <div class="card-header">
+        <h2>GPA Distribution</h2>
+      </div>
+      <div class="chart-container">
+        <canvas id="gpaChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Enrollment Trends -->
+    <div class="data-card">
+      <div class="card-header">
+        <h2>Enrollment Trends</h2>
+      </div>
+      <div class="chart-container">
+        <canvas id="enrollmentChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Major Distribution -->
+    <div class="data-card">
+      <div class="card-header">
+        <h2>Major Distribution</h2>
+      </div>
+      <div class="chart-container">
+        <canvas id="majorPerformanceChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Course Distribution -->
+    <div class="data-card">
+      <div class="card-header">
+        <h2>Course Distribution</h2>
+      </div>
+      <div class="chart-container">
+        <canvas id="courseDistributionChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Course Load -->
+    <div class="data-card">
+      <div class="card-header">
+        <h2>Course Load Distribution</h2>
+      </div>
+      <div class="chart-container">
+        <canvas id="courseLoadChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Gender Distribution -->
+    <div class="data-card">
+      <div class="card-header">
+        <h2>Gender Distribution</h2>
+      </div>
+      <div class="chart-container">
+        <canvas id="genderChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Geographic Distribution -->
+    <div class="data-card">
+      <div class="card-header">
+        <h2>Geographic Distribution</h2>
+      </div>
+      <div class="chart-container">
+        <canvas id="geographicChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Student Progress -->
+    <div class="data-card">
+      <div class="card-header">
+        <h2>Student Progress</h2>
+      </div>
+      <div class="chart-container">
+        <canvas id="studentProgressChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Grades by Subject -->
+    <div class="data-card">
+      <div class="card-header">
+        <h2>Grades by Subject</h2>
+      </div>
+      <div class="chart-container">
+        <canvas id="gradesBySubjectChart"></canvas>
+      </div>
+    </div>
+
+    
+     
+
+  </div>
+</div>
