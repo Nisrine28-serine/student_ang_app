@@ -13,8 +13,8 @@
   }
   
   .dashboard-container {
-    padding: 24px;
-    background-color: #f8f9fa;
+    padding: 2rem;
+    background-color: #f8fafc;
     min-height: 100vh;
   }
   
@@ -41,122 +41,130 @@
   /* Cartes de statistiques */
   .stats-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 24px;
-    margin-bottom: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
   }
   
   .stat-card {
     background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #1976d2, #64b5f6);
   }
   
   .stat-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .stat-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
   }
   
   .stat-label {
-    color: #6c757d;
-    font-size: 14px;
-    margin-bottom: 8px;
+    font-size: 1.125rem;
+    color: #4a5568;
+    margin-bottom: 1rem;
+    font-weight: 500;
   }
   
   .stat-value {
-    color: #2c3e50;
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 8px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2d3748;
+    margin-bottom: 1rem;
+    line-height: 1;
+    font-family: 'Poppins', sans-serif;
   }
   
   .stat-trend {
-    font-size: 13px;
-    padding: 4px 8px;
-    border-radius: 12px;
-    display: inline-block;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
   }
   
   .stat-trend.positive {
-    background-color: rgba(40, 167, 69, 0.1);
-    color: #28a745;
+    color: #48bb78;
+    background-color: rgba(72, 187, 120, 0.1);
   }
   
   .stat-trend.negative {
-    background-color: rgba(220, 53, 69, 0.1);
-    color: #dc3545;
+    color: #f56565;
+    background-color: rgba(245, 101, 101, 0.1);
   }
   
   /* Section des données et graphiques */
   .data-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    gap: 24px;
-    margin-bottom: 24px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
   }
   
   .data-card {
     background: white;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+  }
+  
+  .data-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #1976d2, #64b5f6);
   }
   
   .data-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  .data-card.full-width {
-    grid-column: 1 / -1;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
   
   .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e2e8f0;
   }
   
   .card-header h2 {
-    color: #2c3e50;
-    font-size: 18px;
+    font-size: 1.25rem;
     font-weight: 600;
+    color: #1a202c;
     margin: 0;
-  }
-  
-  .card-actions {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .tab-button {
-    padding: 6px 12px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    color: var(--light-text);
-    border-radius: 4px;
-  }
-  
-  .tab-button.active {
-    background-color: var(--primary-color);
-    color: white;
-  }
-  
-  .card-content {
-    padding: 20px;
   }
   
   .chart-container {
     position: relative;
     height: 300px;
     width: 100%;
-    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -353,27 +361,73 @@
   }
   
   /* Media queries pour le responsive */
-  @media (max-width: 1200px) {
+  @media (max-width: 1400px) {
     .data-section {
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
     }
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     .data-section {
       grid-template-columns: 1fr;
     }
     
     .stats-cards {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
     }
-    
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-container {
+      padding: 1rem;
+    }
+
+    .stats-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .data-section {
+      grid-template-columns: 1fr;
+    }
+
+    .chart-container {
+      height: 300px;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
     .chart-container {
       height: 250px;
     }
-    
-    .search-input {
-      width: 100%;
-      margin-bottom: 12px;
+
+    .stat-value {
+      font-size: 1.75rem;
     }
   }
+  
+  /* Animations pour les cartes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .data-card {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .data-card:nth-child(1) { animation-delay: 0.1s; }
+  .data-card:nth-child(2) { animation-delay: 0.2s; }
+  .data-card:nth-child(3) { animation-delay: 0.3s; }
+  .data-card:nth-child(4) { animation-delay: 0.4s; }
+  .data-card:nth-child(5) { animation-delay: 0.5s; }
+  .data-card:nth-child(6) { animation-delay: 0.6s; }

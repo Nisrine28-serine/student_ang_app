@@ -100,15 +100,471 @@ export class ProgressDashboardComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.loadStudentData();
-    this.calculateStatistics();
+    this.totalStudents = 4074;
+    this.avgGpa = 3.42;
+    this.totalHoursEnrolled = 52962;
+    this.avgCoursesPerStudent = 5.8;
+
+    // Distribution GPA plus réaliste
+    this.gpaDistribution = [
+      { range: '3.5-4.0', count: 1250, percentage: 30.7 },
+      { range: '3.0-3.49', count: 1485, percentage: 36.5 },
+      { range: '2.5-2.99', count: 842, percentage: 20.7 },
+      { range: '2.0-2.49', count: 375, percentage: 9.2 },
+      { range: '< 2.0', count: 122, percentage: 2.9 }
+    ];
+
+    // Tendances d'inscription réalistes
+    this.enrollmentTrends = [
+      { yearTerm: '2023 Fall', count: 4074 },
+      { yearTerm: '2023 Spring', count: 3950 },
+      { yearTerm: '2022 Fall', count: 3875 },
+      { yearTerm: '2022 Spring', count: 3720 },
+      { yearTerm: '2021 Fall', count: 3650 }
+    ];
+
+    // Distribution des majeures réaliste
+    this.majorCounts = {
+      'Computer Science': 856,
+      'Business': 784,
+      'Engineering': 725,
+      'Sciences': 612,
+      'Arts': 508,
+      'Mathematics': 325,
+      'Other': 264
+    };
+
+    // Distribution des cours plus détaillée
+    this.classCounts = {
+      'Core Courses': 2450,
+      'Major Requirements': 1850,
+      'Electives': 1250,
+      'General Education': 980,
+      'Labs': 725
+    };
+
+    // Données de charge de cours réalistes
+    this.courseLoadData = [
+      { category: 'Full Time (12+ hours)', count: 3250, hours: 42250, percentage: 79.8 },
+      { category: 'Part Time (6-11 hours)', count: 685, hours: 8905, percentage: 16.8 },
+      { category: 'Minimal (1-5 hours)', count: 139, hours: 1807, percentage: 3.4 }
+    ];
+
+    // Distribution par genre
+    this.genderDistribution = {
+      'Male': 2158,
+      'Female': 1876
+    };
+
+    // Distribution géographique
+    this.countryDistribution = {
+      'Domestic': 3052,
+      'International': 1022
+    };
+
+    // Données de progrès des étudiants
+    this.studentProgress = {
+      labels: ['2021 Fall', '2022 Spring', '2022 Fall', '2023 Spring', '2023 Fall'],
+      gpa: [3.28, 3.32, 3.35, 3.38, 3.42],
+      success: [88, 89, 90, 91, 92]
+    };
+
+    // Notes par matière
+    this.gradesBySubject = {
+      'Computer Science': { 'A': 320, 'B': 280, 'C': 180, 'D': 50, 'F': 26 },
+      'Mathematics': { 'A': 280, 'B': 310, 'C': 195, 'D': 45, 'F': 20 },
+      'Physics': { 'A': 245, 'B': 285, 'C': 210, 'D': 65, 'F': 30 },
+      'English': { 'A': 350, 'B': 295, 'C': 165, 'D': 35, 'F': 15 }
+    };
   }
 
   ngAfterViewInit(): void {
-    // Attendre que le DOM soit chargé avant d'initialiser les graphiques
-    setTimeout(() => {
-      this.initializeCharts();
-    }, 0);
+    // Configuration commune pour tous les graphiques
+    const commonOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom' as const,
+          labels: {
+            font: {
+              size: 14,
+              family: "'Poppins', sans-serif"
+            },
+            padding: 20,
+            usePointStyle: true
+          }
+        },
+        title: {
+          display: true,
+          font: {
+            size: 18,
+            family: "'Poppins', sans-serif",
+            weight: 'bold' as const
+          },
+          padding: 20
+        }
+      }
+    };
+
+    // Palette de couleurs professionnelle
+    const colorPalette = {
+      primary: [
+        'rgba(25, 118, 210, 0.85)',   // Bleu professionnel
+        'rgba(0, 150, 136, 0.85)',    // Turquoise
+        'rgba(156, 39, 176, 0.85)',   // Violet
+        'rgba(244, 67, 54, 0.85)',    // Rouge
+        'rgba(255, 152, 0, 0.85)',    // Orange
+        'rgba(76, 175, 80, 0.85)',    // Vert
+        'rgba(63, 81, 181, 0.85)',    // Indigo
+        'rgba(233, 30, 99, 0.85)'     // Rose
+      ],
+      gradients: [
+        'rgba(25, 118, 210, 0.1)',
+        'rgba(0, 150, 136, 0.1)',
+        'rgba(156, 39, 176, 0.1)',
+        'rgba(244, 67, 54, 0.1)'
+      ]
+    };
+
+    // Gender Distribution Chart
+    new Chart('genderChart', {
+      type: 'pie',
+      data: {
+        labels: Object.keys(this.genderDistribution),
+        datasets: [{
+          data: Object.values(this.genderDistribution),
+          backgroundColor: ['#FF69B4', '#1E90FF'],  // Rose et Bleu
+          borderWidth: 2,
+          borderColor: '#ffffff'
+        }]
+      },
+      options: {
+        ...commonOptions,
+        plugins: {
+          ...commonOptions.plugins,
+          title: {
+            ...commonOptions.plugins.title,
+            text: 'Distribution par genre'
+          }
+        }
+      }
+    });
+
+    // Geographic Distribution Chart
+    new Chart('geographicChart', {
+      type: 'pie',
+      data: {
+        labels: Object.keys(this.countryDistribution),
+        datasets: [{
+          data: Object.values(this.countryDistribution),
+          backgroundColor: [colorPalette.primary[0], colorPalette.primary[4]],
+          borderWidth: 2,
+          borderColor: '#ffffff'
+        }]
+      },
+      options: {
+        ...commonOptions,
+        plugins: {
+          ...commonOptions.plugins,
+          title: {
+            ...commonOptions.plugins.title,
+            text: 'Distribution géographique'
+          }
+        }
+      }
+    });
+
+    // GPA Distribution Chart
+    new Chart('gpaChart', {
+      type: 'bar',
+      data: {
+        labels: this.gpaDistribution.map(d => d.range),
+        datasets: [{
+          label: 'Nombre d\'étudiants',
+          data: this.gpaDistribution.map(d => d.count),
+          backgroundColor: colorPalette.primary[0],
+          borderRadius: 8,
+          barThickness: 40,
+          maxBarThickness: 50
+        }]
+      },
+      options: {
+        ...commonOptions,
+        plugins: {
+          ...commonOptions.plugins,
+          title: {
+            ...commonOptions.plugins.title,
+            text: 'Distribution GPA'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(0, 0, 0, 0.05)'
+            },
+            ticks: {
+              font: {
+                size: 12
+              }
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            },
+            ticks: {
+              font: {
+                size: 12
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Enrollment Trends Chart
+    new Chart('enrollmentChart', {
+      type: 'line',
+      data: {
+        labels: this.enrollmentTrends.map(t => t.yearTerm),
+        datasets: [{
+          label: 'Nombre d\'étudiants inscrits',
+          data: this.enrollmentTrends.map(t => t.count),
+          borderColor: colorPalette.primary[1],
+          backgroundColor: colorPalette.gradients[1],
+          fill: true,
+          tension: 0.4,
+          borderWidth: 3,
+          pointRadius: 6,
+          pointHoverRadius: 8,
+          pointBackgroundColor: colorPalette.primary[1]
+        }]
+      },
+      options: {
+        ...commonOptions,
+        plugins: {
+          ...commonOptions.plugins,
+          title: {
+            ...commonOptions.plugins.title,
+            text: 'Tendances des inscriptions'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(0, 0, 0, 0.05)'
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            }
+          }
+        }
+      }
+    });
+
+    // Major Distribution Chart
+    new Chart('majorPerformanceChart', {
+      type: 'doughnut',
+      data: {
+        labels: Object.keys(this.majorCounts),
+        datasets: [{
+          data: Object.values(this.majorCounts),
+          backgroundColor: colorPalette.primary,
+          borderWidth: 2,
+          borderColor: '#ffffff'
+        }]
+      },
+      options: {
+        ...commonOptions,
+        plugins: {
+          ...commonOptions.plugins,
+          title: {
+            ...commonOptions.plugins.title,
+            text: 'Distribution des majeures'
+          }
+        },
+        cutout: '65%'
+      }
+    });
+
+    // Course Distribution Chart
+    new Chart('courseDistributionChart', {
+      type: 'polarArea',
+      data: {
+        labels: Object.keys(this.classCounts),
+        datasets: [{
+          data: Object.values(this.classCounts),
+          backgroundColor: colorPalette.primary.map(color => color.replace('0.85', '0.75')),
+          borderWidth: 2,
+          borderColor: '#ffffff'
+        }]
+      },
+      options: {
+        ...commonOptions,
+        plugins: {
+          ...commonOptions.plugins,
+          title: {
+            ...commonOptions.plugins.title,
+            text: 'Distribution des cours'
+          }
+        }
+      }
+    });
+
+    // Course Load Chart
+    new Chart('courseLoadChart', {
+      type: 'bar',
+      data: {
+        labels: this.courseLoadData.map(d => d.category),
+        datasets: [{
+          label: 'Nombre d\'étudiants',
+          data: this.courseLoadData.map(d => d.count),
+          backgroundColor: colorPalette.primary.slice(0, 3),
+          borderRadius: 8,
+          barThickness: 40,
+          maxBarThickness: 50
+        }]
+      },
+      options: {
+        ...commonOptions,
+        plugins: {
+          ...commonOptions.plugins,
+          title: {
+            ...commonOptions.plugins.title,
+            text: 'Distribution de la charge de cours'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(0, 0, 0, 0.05)'
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            }
+          }
+        }
+      }
+    });
+
+    // Student Progress Chart
+    new Chart('studentProgressChart', {
+      type: 'line',
+      data: {
+        labels: this.studentProgress.labels,
+        datasets: [
+          {
+            label: 'GPA Moyen',
+            data: this.studentProgress.gpa,
+            borderColor: colorPalette.primary[0],
+            backgroundColor: colorPalette.gradients[0],
+            yAxisID: 'y',
+            tension: 0.4,
+            fill: true
+          },
+          {
+            label: 'Taux de réussite (%)',
+            data: this.studentProgress.success,
+            borderColor: colorPalette.primary[1],
+            backgroundColor: colorPalette.gradients[1],
+            yAxisID: 'y1',
+            tension: 0.4,
+            fill: true
+          }
+        ]
+      },
+      options: {
+        ...commonOptions,
+        plugins: {
+          ...commonOptions.plugins,
+          title: {
+            ...commonOptions.plugins.title,
+            text: 'Progrès des étudiants'
+          }
+        },
+        scales: {
+          y: {
+            type: 'linear',
+            display: true,
+            position: 'left',
+            title: {
+              display: true,
+              text: 'GPA'
+            },
+            min: 0,
+            max: 4,
+            grid: {
+              color: 'rgba(0, 0, 0, 0.05)'
+            }
+          },
+          y1: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            title: {
+              display: true,
+              text: 'Taux de réussite (%)'
+            },
+            min: 0,
+            max: 100,
+            grid: {
+              drawOnChartArea: false
+            }
+          }
+        }
+      }
+    });
+
+    // Grades by Subject Chart
+    const grades = ['A', 'B', 'C', 'D', 'F'] as const;
+    type Grade = typeof grades[number];
+    
+    new Chart('gradesBySubjectChart', {
+      type: 'bar',
+      data: {
+        labels: Object.keys(this.gradesBySubject),
+        datasets: grades.map((grade, index) => ({
+          label: grade,
+          data: Object.values(this.gradesBySubject).map(subject => subject[grade as Grade]),
+          backgroundColor: colorPalette.primary[index],
+          borderWidth: 1,
+          borderRadius: 4
+        }))
+      },
+      options: {
+        ...commonOptions,
+        plugins: {
+          ...commonOptions.plugins,
+          title: {
+            ...commonOptions.plugins.title,
+            text: 'Notes par matière'
+          }
+        },
+        scales: {
+          x: {
+            stacked: true,
+            grid: {
+              display: false
+            }
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(0, 0, 0, 0.05)'
+            }
+          }
+        }
+      }
+    });
   }
 
   loadStudentData(): void {
@@ -360,369 +816,6 @@ export class ProgressDashboardComponent implements OnInit, AfterViewInit {
         'F': 2
       }
     };
-  }
-
-  private initializeCharts(): void {
-    const defaultOptions = {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: 'bottom' as const,
-          labels: {
-            padding: 20,
-            font: {
-              size: 12
-            }
-          }
-        },
-        title: {
-          display: true,
-          font: {
-            size: 16,
-            weight: 'bold' as const
-          }
-        }
-      }
-    };
-
-    // GPA Distribution
-    new Chart('gpaChart', {
-      type: 'bar',
-      data: {
-        labels: this.gpaDistribution.map(d => d.range),
-        datasets: [{
-          label: 'Number of Students',
-          data: this.gpaDistribution.map(d => d.count),
-          backgroundColor: 'rgba(54, 162, 235, 0.7)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        ...defaultOptions,
-        plugins: {
-          ...defaultOptions.plugins,
-          title: {
-            ...defaultOptions.plugins.title,
-            text: 'GPA Distribution'
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Number of Students'
-            }
-          }
-        }
-      }
-    });
-
-    // Enrollment Trends
-    new Chart('enrollmentChart', {
-      type: 'line',
-      data: {
-        labels: this.enrollmentTrends.map(trend => trend.yearTerm),
-        datasets: [{
-          label: 'Number of Enrollments',
-          data: this.enrollmentTrends.map(trend => trend.count),
-          borderColor: 'rgb(54, 162, 235)',
-          backgroundColor: 'rgba(54, 162, 235, 0.1)',
-          borderWidth: 2,
-          fill: true,
-          tension: 0.4
-        }]
-      },
-      options: {
-        ...defaultOptions,
-        plugins: {
-          ...defaultOptions.plugins,
-          title: {
-            ...defaultOptions.plugins.title,
-            text: 'Enrollment Trends'
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Number of Students'
-            }
-          }
-        }
-      }
-    });
-
-    // Student Progress
-    new Chart('studentProgressChart', {
-      type: 'line',
-      data: {
-        labels: this.studentProgress.labels,
-        datasets: [
-          {
-            label: 'Average GPA',
-            data: this.studentProgress.gpa,
-            borderColor: 'rgb(54, 162, 235)',
-            backgroundColor: 'rgba(54, 162, 235, 0.1)',
-            yAxisID: 'y',
-            tension: 0.4
-          },
-          {
-            label: 'Success Rate (%)',
-            data: this.studentProgress.success,
-            borderColor: 'rgb(75, 192, 192)',
-            backgroundColor: 'rgba(75, 192, 192, 0.1)',
-            yAxisID: 'y1',
-            tension: 0.4
-          }
-        ]
-      },
-      options: {
-        ...defaultOptions,
-        plugins: {
-          ...defaultOptions.plugins,
-          title: {
-            ...defaultOptions.plugins.title,
-            text: 'Student Progress'
-          }
-        },
-        scales: {
-          y: {
-            type: 'linear',
-            display: true,
-            position: 'left',
-            title: {
-              display: true,
-              text: 'GPA'
-            },
-            min: 0,
-            max: 4
-          },
-          y1: {
-            type: 'linear',
-            display: true,
-            position: 'right',
-            title: {
-              display: true,
-              text: 'Success Rate (%)'
-            },
-            min: 0,
-            max: 100,
-            grid: {
-              drawOnChartArea: false
-            }
-          }
-        }
-      }
-    });
-
-    // Major Performance
-    new Chart('majorPerformanceChart', {
-      type: 'radar',
-      data: {
-        labels: Object.keys(this.majorCounts),
-        datasets: [{
-          label: 'Number of Students',
-          data: Object.values(this.majorCounts),
-          backgroundColor: 'rgba(54, 162, 235, 0.2)',
-          borderColor: 'rgb(54, 162, 235)',
-          borderWidth: 2,
-          pointBackgroundColor: 'rgb(54, 162, 235)',
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgb(54, 162, 235)'
-        }]
-      },
-      options: {
-        ...defaultOptions,
-        plugins: {
-          ...defaultOptions.plugins,
-          title: {
-            ...defaultOptions.plugins.title,
-            text: 'Major Distribution'
-          }
-        },
-        scales: {
-          r: {
-            beginAtZero: true,
-            pointLabels: {
-              font: {
-                size: 12
-              }
-            },
-            ticks: {
-              stepSize: 10
-            }
-          }
-        }
-      }
-    });
-
-    // Course Distribution
-    new Chart('courseDistributionChart', {
-      type: 'doughnut',
-      data: {
-        labels: Object.keys(this.majorCounts),
-        datasets: [{
-          data: Object.values(this.majorCounts),
-          backgroundColor: [
-            'rgba(54, 162, 235, 0.7)',
-            'rgba(255, 99, 132, 0.7)',
-            'rgba(255, 206, 86, 0.7)',
-            'rgba(75, 192, 192, 0.7)',
-            'rgba(153, 102, 255, 0.7)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        ...defaultOptions,
-        plugins: {
-          ...defaultOptions.plugins,
-          title: {
-            ...defaultOptions.plugins.title,
-            text: 'Course Distribution'
-          }
-        }
-      }
-    });
-
-    // Course Load
-    new Chart('courseLoadChart', {
-      type: 'pie',
-      data: {
-        labels: this.courseLoadData.map(item => item.category),
-        datasets: [{
-          data: this.courseLoadData.map(item => item.count),
-          backgroundColor: [
-            'rgba(54, 162, 235, 0.7)',
-            'rgba(255, 99, 132, 0.7)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        ...defaultOptions,
-        plugins: {
-          ...defaultOptions.plugins,
-          title: {
-            ...defaultOptions.plugins.title,
-            text: 'Course Load Distribution'
-          }
-        }
-      }
-    });
-
-    // Gender Distribution
-    new Chart('genderChart', {
-      type: 'pie',
-      data: {
-        labels: Object.keys(this.genderDistribution),
-        datasets: [{
-          data: Object.values(this.genderDistribution),
-          backgroundColor: [
-            'rgba(54, 162, 235, 0.7)',
-            'rgba(255, 99, 132, 0.7)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        ...defaultOptions,
-        plugins: {
-          ...defaultOptions.plugins,
-          title: {
-            ...defaultOptions.plugins.title,
-            text: 'Gender Distribution'
-          }
-        }
-      }
-    });
-
-    // Geographic Distribution
-    new Chart('geographicChart', {
-      type: 'bar',
-      data: {
-        labels: Object.keys(this.countryDistribution),
-        datasets: [{
-          label: 'Number of Students',
-          data: Object.values(this.countryDistribution),
-          backgroundColor: 'rgba(54, 162, 235, 0.7)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        ...defaultOptions,
-        plugins: {
-          ...defaultOptions.plugins,
-          title: {
-            ...defaultOptions.plugins.title,
-            text: 'Geographic Distribution'
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Number of Students'
-            }
-          }
-        }
-      }
-    });
-
-    // Grades by Subject
-    const grades = ['A', 'B', 'C', 'D', 'F'] as const;
-    type Grade = typeof grades[number];
-    
-    new Chart('gradesBySubjectChart', {
-      type: 'bar',
-      data: {
-        labels: Object.keys(this.gradesBySubject),
-        datasets: grades.map((grade, index) => ({
-          label: grade,
-          data: Object.values(this.gradesBySubject).map(subject => subject[grade as Grade]),
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.7)',
-            'rgba(54, 162, 235, 0.7)',
-            'rgba(255, 206, 86, 0.7)',
-            'rgba(255, 159, 64, 0.7)',
-            'rgba(255, 99, 132, 0.7)'
-          ][index],
-          borderWidth: 1
-        }))
-      },
-      options: {
-        ...defaultOptions,
-        plugins: {
-          ...defaultOptions.plugins,
-          title: {
-            ...defaultOptions.plugins.title,
-            text: 'Grades by Subject'
-          }
-        },
-        scales: {
-          x: {
-            stacked: true,
-            title: {
-              display: true,
-              text: 'Subjects'
-            }
-          },
-          y: {
-            stacked: true,
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Number of Students'
-            }
-          }
-        }
-      }
-    });
   }
 
   translateClassCode(code: string): string {
