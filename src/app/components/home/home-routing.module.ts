@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
-import { ProgressComponent } from './progress/progress.component';
 import { ProgressDashboardComponent } from './progress-dashboard/progress-dashboard.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'progress', component: ProgressComponent },
   { path: 'progressDashboard', component: ProgressDashboardComponent}
 ];
 

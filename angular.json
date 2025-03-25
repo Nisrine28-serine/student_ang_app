@@ -79,7 +79,12 @@
               "buildTarget": "student_app:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+               "ssl": true,
+               "sslCert": "./keystore.p12",
+               "sslKey": ""
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"

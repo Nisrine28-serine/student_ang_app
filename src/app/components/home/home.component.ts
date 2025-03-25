@@ -2,6 +2,9 @@ import { Component, HostListener } from '@angular/core';
 
 import { DataService } from '../../services/data.service';
 import { Data } from '../../models/data';
+import { InfoCard } from '../../models/infoCard';
+import { StudentCard } from '../../models/studentCard';
+import { CandidacyCard } from '../../models/candidacyCard';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +16,7 @@ export class HomeComponent {
   isMobile = window.innerWidth < 768;
   searchQuery = '';
   isSearching = false;
-  studentData?: any;
+  studentData?: Data;
   searchError = '';
 
   constructor(private dataService: DataService) {}
@@ -34,7 +37,7 @@ export class HomeComponent {
     
     // Pour le développement, utiliser getData pour afficher toutes les données
     // Dans un environnement de production, utilisez getStudentById
-    this.dataService.getData().subscribe({
+    this.dataService.getData(+this.searchQuery).subscribe({
       next: (data) => {
         this.studentData = data;
         console.log('Data received:', this.studentData);
@@ -77,15 +80,15 @@ export class HomeComponent {
   getPersonalInfoCompletion(): number {
     if (!this.studentData || !this.studentData.info) return 0;
 
-    const info = this.studentData.info;
+    const info: InfoCard = this.studentData.info;
     const fields = [
       'first_name', 'last_name', 'name_format', 'middle_name', 'birth_name',
-      'email_address', 'mobile_phone', 'id_num', 'appid', 'stud_mstr_employ'
+      'email_address', 'mobile_phone', 'idNum', 'appid', 'stud_mstr_employ'
     ];
     
     let filledFields = 0;
     fields.forEach(field => {
-      if (info[field] !== null && info[field] !== undefined && info[field] !== '') {
+      if (info[field as keyof InfoCard] !== null && info[field as keyof InfoCard] !== undefined && info[field as keyof InfoCard] !== '') {
         filledFields++;
       }
     });
@@ -96,15 +99,15 @@ export class HomeComponent {
   getPersonalInfoMissing(): number {
     if (!this.studentData || !this.studentData.info) return 0;
 
-    const info = this.studentData.info;
+    const info: InfoCard = this.studentData.info;
     const fields = [
       'first_name', 'last_name', 'name_format', 'middle_name', 'birth_name',
-      'email_address', 'mobile_phone', 'id_num', 'appid', 'stud_mstr_employ'
+      'email_address', 'mobile_phone', 'idNum', 'appid', 'stud_mstr_employ'
     ];
     
     let missingFields = 0;
     fields.forEach(field => {
-      if (info[field] === null || info[field] === undefined || info[field] === '') {
+      if (info[field   as keyof InfoCard] === null || info[field as keyof InfoCard] === undefined || info[field as keyof InfoCard] === '') {
         missingFields++;
       }
     });
@@ -123,7 +126,7 @@ export class HomeComponent {
   getStudentInfoCompletion(): number {
     if (!this.studentData || !this.studentData.student) return 0;
 
-    const student = this.studentData.student;
+    const student: StudentCard = this.studentData.student;
     const fields = [
       'idNum', 'studentEmployCode', 'webGroup', 'tuitionCode', 'entranceYear',
       'entranceTerm', 'currentClassCode', 'hold1Code', 'hold2Code', 'hold3Code',
@@ -133,7 +136,7 @@ export class HomeComponent {
     
     let filledFields = 0;
     fields.forEach(field => {
-      if (student[field] !== null && student[field] !== undefined && student[field] !== '') {
+      if (student[field as keyof StudentCard] !== null && student[field as keyof StudentCard] !== undefined && student[field as keyof StudentCard] !== '') {
         filledFields++;
       }
     });
@@ -144,7 +147,7 @@ export class HomeComponent {
   getStudentInfoMissing(): number {
     if (!this.studentData || !this.studentData.student) return 0;
 
-    const student = this.studentData.student;
+    const student : StudentCard = this.studentData.student;
     const fields = [
       'idNum', 'studentEmployCode', 'webGroup', 'tuitionCode', 'entranceYear',
       'entranceTerm', 'currentClassCode', 'hold1Code', 'hold2Code', 'hold3Code',
@@ -154,7 +157,7 @@ export class HomeComponent {
     
     let missingFields = 0;
     fields.forEach(field => {
-      if (student[field] === null || student[field] === undefined || student[field] === '') {
+      if (student[field as keyof StudentCard] === null || student[field as keyof StudentCard] === undefined || student[field as keyof StudentCard] === '') {
         missingFields++;
       }
     });
@@ -173,7 +176,7 @@ export class HomeComponent {
   getCandidacyInfoCompletion(): number {
     if (!this.studentData || !this.studentData.candiday || this.studentData.candiday.length === 0) return 0;
 
-    const candidacy = this.studentData.candiday[0]; // Utiliser la première candidature
+    const candidacy  : CandidacyCard= this.studentData.candiday[0]; // Utiliser la première candidature
     const fields = [
       'idNum', 'yearCode', 'divisionCode', 'stage', 'programCode', 'termCode',
       'bacYear', 'highSchool', 'highSchoolDiploma', 'highSchoolDistinction',
@@ -187,7 +190,7 @@ export class HomeComponent {
     
     let filledFields = 0;
     fields.forEach(field => {
-      if (candidacy[field] !== null && candidacy[field] !== undefined && candidacy[field] !== '') {
+      if (candidacy[field as keyof CandidacyCard] !== null && candidacy[field as keyof CandidacyCard] !== undefined && candidacy[field as keyof CandidacyCard] !== '') {
         filledFields++;
       }
     });
@@ -198,7 +201,7 @@ export class HomeComponent {
   getCandidacyInfoMissing(): number {
     if (!this.studentData || !this.studentData.candiday || this.studentData.candiday.length === 0) return 0;
 
-    const candidacy = this.studentData.candiday[0]; // Utiliser la première candidature
+    const candidacy : CandidacyCard = this.studentData.candiday[0]; // Utiliser la première candidature
     const fields = [
       'idNum', 'yearCode', 'divisionCode', 'stage', 'programCode', 'termCode',
       'bacYear', 'highSchool', 'highSchoolDiploma', 'highSchoolDistinction',
@@ -212,7 +215,7 @@ export class HomeComponent {
     
     let missingFields = 0;
     fields.forEach(field => {
-      if (candidacy[field] === null || candidacy[field] === undefined || candidacy[field] === '') {
+      if (candidacy[field as keyof CandidacyCard] === null || candidacy[field as keyof CandidacyCard] === undefined || candidacy[field as keyof CandidacyCard] === '') {
         missingFields++;
       }
     });

@@ -6,10 +6,10 @@
             <div class="flex space-x-1">
                 <!-- Menu Items -->
                 <div *ngFor="let item of menuItems; let i = index">
-                    <a [routerLink]="item.link" (click)="setActiveItem(i)"
+                    <a (click)="setActiveItem(i, item.link)"
                         class="flex items-center px-3 py-2 rounded hover:bg-gray-100 transition-colors duration-200"
                         [class.bg-blue-50]="item.active" [class.text-blue-600]="item.active">
-                        <i class="material-icons mr-1" [ngClass]="{'text-blue-600': item.active}">{{item.icon}}</i>
+                        <i class="material-icons mr-1" [class]="{'text-blue-600': item.active}">{{item.icon}}</i>
                         <span>{{item.title}}</span>
                     </a>
                 </div>

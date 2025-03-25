@@ -1,7 +1,12 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { CandidacyCard } from '../../models/candidacyCard';
+import { ActivatedRoute, Router } from '@angular/router';
+import { mergeMap } from 'rxjs';
+import { InfoCard } from '../../models/infoCard';
+import { StudentCard } from '../../models/studentCard';
+import { DataService } from '../../services/data.service';
+import { Data } from '../../models/data';
 import { Location } from '@angular/common';
-import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-progress',
@@ -9,8 +14,8 @@ import { DataService } from '../../../services/data.service';
   templateUrl: './progress.component.html',
   styleUrl: './progress.component.css'
 })
-export class ProgressComponent implements OnInit, AfterViewInit {
-  studentData?: any;
+export class ProgressComponent  implements OnInit, AfterViewInit{
+  studentData?: Data;
   
   // Data for charts
   personalInfoFields: { name: string, filled: boolean }[] = [];
@@ -26,13 +31,13 @@ export class ProgressComponent implements OnInit, AfterViewInit {
     private dataService: DataService,
     private router: Router,
     private location: Location,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private route: ActivatedRoute,
   ) {}
   
   ngOnInit(): void {
-    // Get student data from the service
-    this.dataService.getData().subscribe({
-      next: (data) => {
+    this.route.params.pipe(mergeMap(params => this.dataService.getData(+params['id']))).subscribe({
+      next: data => {
         if (!data) {
           this.router.navigate(['']);
           return;
@@ -45,7 +50,23 @@ export class ProgressComponent implements OnInit, AfterViewInit {
         console.error('Error retrieving data:', err);
         this.router.navigate(['']);
       }
-    });
+    })
+    // Get student data from the service
+    // this.dataService.getData(this.studentData?.info?.idNum!).subscribe({
+    //   next: (data) => {
+    //     if (!data) {
+    //       this.router.navigate(['']);
+    //       return;
+    //     }
+        
+    //     this.studentData = data;
+    //     this.initializeFieldsData();
+    //   },
+    //   error: (err) => {
+    //     console.error('Error retrieving data:', err);
+    //     this.router.navigate(['']);
+    //   }
+    // });
   }
   
   ngAfterViewInit(): void {
@@ -89,7 +110,7 @@ export class ProgressComponent implements OnInit, AfterViewInit {
   initializeFieldsData(): void {
     // Personal information
     if (this.studentData?.info) {
-      const info = this.studentData.info;
+      const info: InfoCard = this.studentData.info;
       const personalFields = [
         { key: 'first_name', label: 'First Name' },
         { key: 'last_name', label: 'Last Name' },
@@ -98,20 +119,20 @@ export class ProgressComponent implements OnInit, AfterViewInit {
         { key: 'birth_name', label: 'Birth Name' },
         { key: 'email_address', label: 'Email' },
         { key: 'mobile_phone', label: 'Mobile Phone' },
-        { key: 'id_num', label: 'Student ID' },
+        { key: 'idNum', label: 'Student ID' },
         { key: 'appid', label: 'Application ID' },
         { key: 'stud_mstr_employ', label: 'Student Employment' }
       ];
       
       this.personalInfoFields = personalFields.map(field => ({
         name: field.label,
-        filled: this.isFieldFilled(info[field.key])
+        filled: this.isFieldFilled(info[field.key as keyof InfoCard])
       }));
     }
     
     // Student information
     if (this.studentData?.student) {
-      const student = this.studentData.student;
+      const student: StudentCard = this.studentData.student;
       const studentFields = [
         { key: 'idNum', label: 'Student ID' },
         { key: 'studentEmployCode', label: 'Employment Code' },
@@ -138,13 +159,13 @@ export class ProgressComponent implements OnInit, AfterViewInit {
       
       this.studentInfoFields = studentFields.map(field => ({
         name: field.label,
-        filled: this.isFieldFilled(student[field.key])
+        filled: this.isFieldFilled(student[field.key as keyof StudentCard])
       }));
     }
     
     // Candidacy information
     if (this.studentData?.candiday && this.studentData.candiday.length > 0) {
-      const candidacy = this.studentData.candiday[0];
+      const candidacy: CandidacyCard = this.studentData.candiday[0];
       const candidacyFields = [
         { key: 'idNum', label: 'Student ID' },
         { key: 'yearCode', label: 'Academic Year' },
@@ -196,7 +217,7 @@ export class ProgressComponent implements OnInit, AfterViewInit {
       
       this.candidacyInfoFields = candidacyFields.map(field => ({
         name: field.label,
-        filled: this.isFieldFilled(candidacy[field.key])
+        filled: this.isFieldFilled(candidacy[field.key as keyof CandidacyCard])
       }));
     }
   }
@@ -284,6 +305,6 @@ export class ProgressComponent implements OnInit, AfterViewInit {
   
   // Navigate to the home page
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['/']);
   }
 }

@@ -12,13 +12,14 @@ export class SidebarComponent {
 
   menuItems = [
     { title: 'Dashboard', icon: 'dashboard', link: '/home', active: true },
-    { title: 'Progress', icon: 'insights', link: './progressDashboard', active: false }
+    { title: 'Progress', icon: 'insights', link: '/progressDashboard', active: false }
   ];
 
-  setActiveItem(index: number): void {
+  setActiveItem(index: number, link: string): void {
     this.menuItems.forEach((item, i) => {
       item.active = i === index;
     });
+    this.router.navigateByUrl(link);
   }
 
   logout(): void {

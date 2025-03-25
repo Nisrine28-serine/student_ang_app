@@ -5,7 +5,7 @@
             <!-- Première rangée: Logo et recherche -->
             <div class="flex justify-between items-center px-4 mb-2">
                 <div class="flex items-center">
-                    <i class="material-icons text-blue-600 mr-2">school</i>
+                    
                     <h1 class="text-lg font-bold text-gray-800">Al Akhawayn University</h1>
                 </div>
 
@@ -35,7 +35,7 @@
         <div class="page-content-body">
             <!-- Lien vers la page de progression détaillée - Affiché seulement si studentData existe -->
             <div *ngIf="studentData" class="mb-6 flex justify-end">
-                <a routerLink="progress"
+                <a [routerLink]="'/progress/'+studentData.info.idNum"
                     class="progress-link flex items-center gap-2 bg-white px-4 py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-gray-700 hover:text-blue-600">
                     <i class="material-icons text-blue-500">insights</i>
                     <span class="font-medium">View detailed data completion analysis</span>

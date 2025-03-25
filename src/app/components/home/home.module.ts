@@ -10,7 +10,6 @@ import { FooterComponent } from './footer/footer.component';
 import { CardinfoComponent } from './cardinfo/cardinfo.component';
 import { CardstudentComponent } from './cardstudent/cardstudent.component';
 import { CardcandidayComponent } from './cardcandiday/cardcandiday.component';
-import { ProgressComponent } from './progress/progress.component';
 import { ProgressDashboardComponent } from './progress-dashboard/progress-dashboard.component';
 
 @NgModule({
@@ -21,9 +20,7 @@ import { ProgressDashboardComponent } from './progress-dashboard/progress-dashbo
     CardinfoComponent,
     CardstudentComponent,
     CardcandidayComponent,
-    ProgressComponent,
-    ProgressDashboardComponent,
-    
+    ProgressDashboardComponent,   
   ],
   imports: [
     CommonModule,
