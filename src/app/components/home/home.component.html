@@ -12,9 +12,9 @@
                 <div class="flex items-center gap-2">
                     <input type="text" placeholder="Search by Student ID" [(ngModel)]="searchQuery"
                         (keyup.enter)="onSearch()"
-                        class="border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+                        class="search-input border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400" />
                     <button (click)="onSearch()"
-                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        class="search-button bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400">
                         Search
                     </button>
                 </div>

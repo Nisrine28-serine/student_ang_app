@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 
-import { DataService } from '../../services/data.service';
+import { DataService } from '../../services/student.service';
 import { Data } from '../../models/data';
 import { InfoCard } from '../../models/infoCard';
 import { StudentCard } from '../../models/studentCard';
@@ -35,8 +35,7 @@ export class HomeComponent {
     this.isSearching = true;
     this.searchError = '';
     
-    // Pour le développement, utiliser getData pour afficher toutes les données
-    // Dans un environnement de production, utilisez getStudentById
+  
     this.dataService.getData(+this.searchQuery).subscribe({
       next: (data) => {
         this.studentData = data;

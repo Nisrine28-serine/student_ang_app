@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
     ProgressComponent
   ],
   imports: [
+    
     CommonModule,
     ProgressRoutingModule,
     RouterModule

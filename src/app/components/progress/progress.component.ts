@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap } from 'rxjs';
 import { InfoCard } from '../../models/infoCard';
 import { StudentCard } from '../../models/studentCard';
-import { DataService } from '../../services/data.service';
+import { DataService } from '../../services/student.service';
 import { Data } from '../../models/data';
 import { Location } from '@angular/common';
 
